@@ -1,6 +1,6 @@
 # grunt-styleguide
 
-> Universal styleguide generator
+> Universal CSS styleguide generator for grunt
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._

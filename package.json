@@ -1,6 +1,6 @@
 {
   "name": "Styleguide",
-  "description": "Generate CSS styleguide using your framework of choice",
+  "description": "Universal CSS styleguide generator for grunt",
   "version": "0.1.0",
   "homepage": "https://github.com/indieisaconcept/grunt-styleguide",
   "author": {
