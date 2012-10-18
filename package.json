@@ -40,6 +40,6 @@
     "grunt-lib-contrib": "~0.3.0",
     "grunt-contrib-jshint": "0.1.0",
     "grunt-contrib-nodeunit": "0.1.0",
-    "grunt-contrib-clean": "~0.3.1",
+    "grunt-contrib-clean": "~0.3.1"
   }
 }
