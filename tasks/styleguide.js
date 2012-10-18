@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
     // ==================================
     // DEFAULTS
-    // ==================================  
+    // ==================================
 
     var fs = require('fs'),
         path = require('path'),
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 
     // ==================================
     // PLUGIN DEFAULTS
-    // ==================================  
+    // ==================================
 
     plugin = {
 
@@ -84,18 +84,18 @@ module.exports = function(grunt) {
     // ==================================
     // TASK
     // ==================================
-    
+
     grunt.registerMultiTask('styleguide', 'Generate CSS styleguides', function() {
 
         grunt.log.write(grunt.util.linefeed);
 
-        var options = this.options(),
+        var options = this.options && this.options() || helpers.options(this), // TODO: ditch this when grunt v0.4 is released
             framework = options.framework || 'styledocco',
             done = this.async();
 
         // initialize the framework
         framework = grunt.util._.isFunction(framework) ? framework : require('./lib/' + framework);
-        framework = framework.init(grunt),            
+        framework = framework.init(grunt),
 
         // TODO: ditch this when grunt v0.4 is released
         this.files = this.files || helpers.normalizeMultiTaskFiles(this.data, this.target);
@@ -113,8 +113,8 @@ module.exports = function(grunt) {
                     files: {
                         file: file,
                         src: files.length > 0 && files || grunt.file.exists(file.src) && file.src,
-                        dest: path.resolve(file.dest),
-                        base: path.resolve() + '/' + path.dirname(file.src).split('/')[0]
+                        dest: file.dest,
+                        base: path.dirname(file.src).split('*')[0]
                     }
 
                 };
@@ -129,31 +129,34 @@ module.exports = function(grunt) {
             // framework:
             // All registered styleguides frameworks when initialized should return a function
             // which has the following argument signature.
-            // 
+            //
             // options:   configuration options for the styleguide framework
-            // callback:  function to support async execution 
-            // 
+            // callback:  function to support async execution
+            //
             //    framework({
-            //    
+            //
             //      preprocessor: 'less',
-            //    
+            //
             //      options: {
             //          // framework options
             //      },
-            //      
+            //
             //      files: {
             //          file: file
             //          src: ['path/to/files'],
             //          dest: ['path/to/destination'],
             //          base: ['base/path']
             //      }
-            //      
+            //
             //    }, function () {
-            //    
+            //
             //      // execute some command
             //      next()
-            //    
+            //
             //    });
+            //
+
+            console.log(styleguide);
 
             framework(styleguide, function(error, result) {
 

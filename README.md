@@ -7,13 +7,13 @@ _If you haven't used [grunt][] before, be sure to check out the [Getting Started
 
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
-```
+```bash
 npm install grunt-styleguide --save-dev
 ```
 
 Once that's done, add this line to your project's Gruntfile:
 
-```
+```js
 grunt.loadNpmTasks('grunt-styleguide');
 ```
 
@@ -106,8 +106,10 @@ For more details on the supported options for **styledocco** can be found [style
 
 ##### Planned
 
-- [node-kss][] (v0.2.0)
-- [kss][] via [kss-standalone][] (v0.2.0)
+By default styledocco is bundled however, future versions may provide support for the frameworks below.
+
+- [node-kss][]
+- [kss][] via [kss-standalone][]
 
 #### Extending grunt-styleguide
 
@@ -125,9 +127,9 @@ module.exports = {
 	
 		return function (options, callback) {
 		
-			framework(options, function () {
+			framework(options, function (result) {
 			
-				callback();
+				callback(error, result);
 			
 			})
 		

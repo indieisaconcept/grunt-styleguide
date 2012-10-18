@@ -27,15 +27,15 @@ var getEvidence = function (/* String */ framework, /* String */ preprocessor) {
   // setup default options for use by tests
   var options = {
       docs: framework + '/docs/bootstrap',
-      file: 'fixtures-${framework}-docs-bootstrap-${preprocessor}-components-buttons.html'
+      file: '*components-buttons.html'
     },
 
-    path = options.docs + '/' + preprocessor + '/' + options.file.replace('${framework}', framework).replace('${preprocessor}', preprocessor),
+    path = options.docs + '/' + preprocessor + '/',
 
     evidence = {
-      actual: grunt.file.read('tmp/' + path),
-      expected: grunt.file.read('test/expected/' + path),
-      description: 'should generate styleguide for ${preporcessor} correctly.'.replace('${framework}', framework).replace('${preprocessor}', preprocessor)
+      actual: grunt.file.read(grunt.file.findup('tmp/' + path, options.file)),
+      expected: grunt.file.read(grunt.file.findup('test/expected/' + path, options.file)),
+      description: 'should generate styleguide for ${preprocessor} correctly.'.replace('${framework}', framework).replace('${preprocessor}', preprocessor)
     };
 
   return evidence;

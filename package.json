@@ -1,5 +1,5 @@
 {
-  "name": "Styleguide",
+  "name": "grunt-styleguide",
   "description": "Universal CSS styleguide generator for grunt",
   "version": "0.1.0",
   "homepage": "https://github.com/indieisaconcept/grunt-styleguide",
@@ -29,13 +29,13 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.4.0a",
+    "grunt": "~0.3.17",
     "grunt-lib-contrib": "~0.3.0",
     "grunt-contrib-jshint": "0.1.0",
-    "grunt-contrib-clean": "0.4.0a",
     "grunt-contrib-nodeunit": "0.1.0",
     "styledocco": "https://github.com/indieisaconcept/styledocco/tarball/10c0262d53",
-    "less": "~1.3.0"
+    "less": "~1.3.0",
+    "grunt-contrib-clean": "~0.3.1"
   },
   "keywords": [
     "gruntplugin"
