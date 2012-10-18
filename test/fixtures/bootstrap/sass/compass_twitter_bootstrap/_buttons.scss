@@ -1,0 +1,282 @@
+//
+// Buttons
+// --------------------------------------------------
+
+// As a convention, buttons should only be used for actions while hyperlinks are to be used for objects. For instance, "Download" should be a button while "recent activity" should be a link.
+// Button styles can be applied to anything with the `btn` class applied. However, typically you'll want to apply these to only `a` and `button` elements.
+
+
+// Base styles
+// --------------------------------------------------
+
+// Standard gray button with gradient
+//
+//    <button class="btn">Default</button>
+
+// Core
+.btn {
+  display: inline-block;
+  @include ie7-inline-block();
+  padding: 4px 14px;
+  margin-bottom: 0; // For input.btn
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  *line-height: $baseLineHeight;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  @include buttonBackground($btnBackground, $btnBackgroundHighlight, $grayDark, 0 1px 1px rgba(255,255,255,.75));
+  border: 1px solid $btnBorder;
+  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+  border-bottom-color: darken($btnBorder, 10%);
+  @include border-radius(4px);
+  @include ie7-restore-left-whitespace(); // Give IE7 some love
+  @include box-shadow(#{inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)});
+
+// States
+// ------
+// Hover state
+
+//    <button class="btn :hover">Default</button>
+
+  &:hover {
+    color: $grayDark;
+    text-decoration: none;
+    background-color: darken($white, 10%);
+    *background-color: darken($white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
+    background-position: 0 -15px;
+
+    // transition is only when going to hover, otherwise the background
+    // behind the gradient (there for IE<=9 fallback) gets mismatched
+    @include transition(background-position .1s linear);
+  }
+
+// Focus state for keyboard and accessibility
+
+//    <button class="btn :focus">Default</button>
+
+  // Focus state for keyboard and accessibility
+  &:focus {
+    @include tab-focus();
+  }
+
+// Active state
+
+//    <button class="btn active">Active</button>
+
+  &.active,
+  &:active {
+    background-color: darken($white, 10%);
+    background-color: darken($white, 15%) \9;
+    background-image: none;
+    outline: 0;
+    @include box-shadow(#{inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)});
+  }
+
+// Add the `disabled` class to links and the `disabled` attribute for `button` elements.
+
+//    <button class="btn" disabled>Disabled</button>
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    cursor: default;
+    background-color: darken($white, 10%);
+    background-image: none;
+    @include opacity(65);
+    @include box-shadow(none);
+  }
+
+}
+
+
+
+// Multiple sizes
+// ==============
+// Fancy larger or smaller buttons?
+
+// Large
+
+//    <button class="btn btn-large">Large</button>
+
+.btn-large {
+  padding: 9px 14px;
+  font-size: $baseFontSize + 2px;
+  line-height: normal;
+  @include border-radius(5px);
+}
+.btn-large [class^="icon-"] {
+  margin-top: 2px;
+}
+
+// Small
+
+//    <button class="btn btn-small">Small</button>
+
+.btn-small {
+  padding: 3px 9px;
+  font-size: $baseFontSize - 2px;
+  line-height: $baseLineHeight - 2px;
+}
+.btn-small [class^="icon-"] {
+  margin-top: 0px;
+}
+
+// Mini
+
+//    <button class="btn btn-mini">Mini</button>
+
+.btn-mini {
+  padding: 2px 6px;
+  font-size: $baseFontSize - 3px;
+  line-height: $baseLineHeight - 4px;
+}
+
+// Block button
+//
+//    <button class="btn btn-block">Block</button>
+
+.btn-block {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  @include box-sizing(border-box);
+}
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+
+
+// Alternate buttons
+// --------------------------------------------------
+
+// Provide *some* extra contrast for those who can get it
+.btn-primary.active,
+.btn-warning.active,
+.btn-danger.active,
+.btn-success.active,
+.btn-info.active,
+.btn-inverse.active {
+  color: rgba(255,255,255,.75);
+}
+
+// Set the backgrounds
+// -------------------------
+.btn {
+  // reset here as of 2.0.3 due to Recess property order
+  border-color: #c5c5c5;
+  border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.25);
+}
+
+ // Set the backgrounds
+
+// Provides extra visual weight and identifies the primary action in a set of buttons.
+
+//    <button class="btn btn-primary">Primary</button>
+//    <button class="btn btn-primary :hover">Hover</button>
+//    <button class="btn btn-primary :active">Active</button>
+
+.btn-primary {
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+}
+
+// Indicates caution should be taken with this action
+
+//    <button class="btn btn-warning">Warning</button>
+//    <button class="btn btn-warning :hover">Hover</button>
+//    <button class="btn btn-warning :active">Active</button>
+
+.btn-warning {
+  @include buttonBackground($btnWarningBackground, $btnWarningBackgroundHighlight);
+}
+
+// Indicates a dangerous or potentially negative action
+
+//    <button class="btn btn-danger">Danger</button>
+//    <button class="btn btn-danger :hover">Hover</button>
+//    <button class="btn btn-danger :active">Active</button>
+
+.btn-danger {
+  @include buttonBackground($btnDangerBackground, $btnDangerBackgroundHighlight);
+}
+
+// Indicates a successful or positive action
+
+//    <button class="btn btn-success">Success</button>
+//    <button class="btn btn-success :hover">Hover</button>
+//    <button class="btn btn-success :active">Active</button>
+
+.btn-success {
+  @include buttonBackground($btnSuccessBackground, $btnSuccessBackgroundHighlight);
+}
+// Used as an alternate to the default styles
+
+//    <button class="btn btn-info">Info</button>
+//    <button class="btn btn-info :hover">Hover</button>
+//    <button class="btn btn-info :active">Active</button>
+
+.btn-info {
+  @include buttonBackground($btnInfoBackground, $btnInfoBackgroundHighlight);
+}
+// Alternate dark gray button, not tied to a semantic action or use
+
+//    <button class="btn btn-inverse">Inverse</button>
+//    <button class="btn btn-inverse :hover">Hover</button>
+//    <button class="btn btn-inverse :active">Active</button>
+.btn-inverse {
+  @include buttonBackground($btnInverseBackground, $btnInverseBackgroundHighlight);
+}
+
+
+// Cross-browser Jank
+// --------------------------------------------------
+
+button.btn,
+input[type="submit"].btn {
+
+  // Firefox 3.6 only I believe
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  // IE7 has some default padding on button controls
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+  &.btn-large {
+    *padding-top: 7px;
+    *padding-bottom: 7px;
+  }
+  &.btn-small {
+    *padding-top: 3px;
+    *padding-bottom: 3px;
+  }
+  &.btn-mini {
+    *padding-top: 1px;
+    *padding-bottom: 1px;
+  }
+}
+
+
+// Link buttons
+// --------------------------------------------------
+
+// Make a button look and behave like a link
+.btn-link,
+.btn-link:active {
+  background-color: transparent;
+  background-image: none;
+  @include box-shadow(none);
+}
+.btn-link {
+  border-color: transparent;
+  cursor: pointer;
+  color: $linkColor;
+  @include border-radius(0);
+}
+.btn-link:hover {
+  color: $linkColorHover;
+  text-decoration: underline;
+  background-color: transparent;
+}

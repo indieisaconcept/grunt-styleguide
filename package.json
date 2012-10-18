@@ -1,0 +1,44 @@
+{
+  "name": "Styleguide",
+  "description": "Generate CSS styleguide using your framework of choice",
+  "version": "0.1.0",
+  "homepage": "https://github.com/indieisaconcept/grunt-styleguide",
+  "author": {
+    "name": "Jonathan Barnett @indieisaconcept",
+    "email": "me@indieisaconcept.com",
+    "url": "http://twitter.com/indieisaconcept"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/indieisaconcept/grunt-styleguide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/indieisaconcept/grunt-styleguide/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/indieisaconcept/grunt-styleguide/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0a",
+    "grunt-lib-contrib": "~0.3.0",
+    "grunt-contrib-jshint": "0.1.0",
+    "grunt-contrib-clean": "0.4.0a",
+    "grunt-contrib-nodeunit": "0.1.0",
+    "styledocco": "https://github.com/indieisaconcept/styledocco/tarball/10c0262d53",
+    "less": "~1.3.0"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {}
+}
