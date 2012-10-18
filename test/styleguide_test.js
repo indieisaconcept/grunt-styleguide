@@ -70,6 +70,8 @@ exports.styleguide = {
 
         var evidence = getEvidence('styledocco','less');
 
+        console.log(evidence);
+
         test.expect(1);
         test.equal(evidence.actual, evidence.expected, evidence.description);
         test.done();

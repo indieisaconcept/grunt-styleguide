@@ -156,8 +156,6 @@ module.exports = function(grunt) {
             //    });
             //
 
-            console.log(styleguide);
-
             framework(styleguide, function(error, result) {
 
                 var msg = 'DEST: ' + styleguide.files.dest + '/index.html';
