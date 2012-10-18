@@ -43,7 +43,6 @@ grunt.initConfig({
     	// Target-specific options go here.
 	    options: {
 	        name: 'Style Guide',
-	        preprocessor: 'sass --compass',
 	        include: ['plugin.css', 'app.js']
 	    },
 	
@@ -78,7 +77,9 @@ grunt.initConfig({
 #### Framework Options
 Framework options are used to pass the appropriate arguments to a styleguide generator. These options have a 1:1 mapping to the frameworks available options.
 
-Future versions of **grunt-styleguide** will rationalize these options for all frameworks.
+By default **grunt-styleguide** will determine the CSS preprocess in use by evaluating the selected source files. This value will be passed as an option to framework plugins.
+
+Future versions of **grunt-styleguide** will further rationalize these options for all frameworks.
 
 ##### Currently Supported
 
@@ -96,8 +97,6 @@ Future versions of **grunt-styleguide** will rationalize these options for all f
   <tr>
     <td>name</td><td>String</td><td>package.json name || 'Styleguide'</td><td>Name to use for the styleguide</td>
   </tr><tr>
-    <td>preprocessor</td><td>String</td><td>N/A</td><td>Specify the CSS preprocess to use for styleguide generation</td>
-  </tr></tr><tr>
     <td>include</td><td>Array</td><td>N/A</td><td>Additional CSS/JS to incluce in the generated styleguide output</td>
   </tr>
 </table>
@@ -142,28 +141,47 @@ module.exports = {
 
 A framework plugin when initialized should return a function which supports the following argument signature.
 
+##### Defaults 
+
 <table>
   <tr>
     <th>Argument</th><th>Type</th><th>Default</th><th>Description</th>
-  </tr>
-  <tr>
-    <td>files</td><td>Object</td><td>
-    	{}
-    </td>
-    <td>Rationalized object containing, src, dest and base keys which detail file specific items.</td>
   </tr><tr>
-    <td>options</td>
+    <td>styleguide</td>
     <td>Object</td>
     <td>{}</td>
     <td>Styleguide framework options</td>
-  </tr></tr><tr>
+  </tr></tr>
     <td>callback</td><td>Function</td>
     <td>this.asnyc()</td>
     <td>Pass the async task handler grunt provides to the styleguide framework plugin</td>
   </tr>
 </table>
 
-**grunt-styleguide** will pass a rationalize and `files` object describinthe files you wish to process. These values should be mapped to the equivalent provided by the framework.
+##### styleguide object
+
+<table>
+  <tr>
+    <th>Argument</th><th>Type</th><th>Default</th><th>Description</th>
+  </tr><tr>
+    <td>preprocessor</td><td>String</td><td>
+    	undefined
+    </td>
+    <td>CSS preprocessor to use </td>
+  </tr><tr>
+    <td>options</td>
+    <td>Object</td>
+    <td>{}</td>
+    <td>Styleguide framework options</td>
+  </tr><tr>
+    <td>files</td><td>Object</td><td>
+    	{}
+    </td>
+    <td>Rationalized object containing, file, src, dest and base keys which detail file specific items.</td>
+  </tr>
+</table>
+
+**grunt-styleguide** will pass a rationalize `files` object describing the files you wish to process. These values should be mapped to the equivalent arguments provided by the framework.
 
 ### Usage Examples
 
