@@ -1,52 +1,34 @@
 'use strict';
 
-var grunt = require('grunt');
+var grunt = require('grunt'),
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+    getEvidence = function (/* String */ framework, /* String */ preprocessor) {
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+      // setup default options for use by tests
+      var options = {
+          docs: framework + '/docs/bootstrap/' + preprocessor,
+          file: '*components-buttons.html'
+        },
 
-var getEvidence = function (/* String */ framework, /* String */ preprocessor) {
+        path = options.docs + '/' + options.file,
 
-  // setup default options for use by tests
-  var options = {
-      docs: framework + '/docs/bootstrap',
-      file: '*components-buttons.html'
-    },
+        // grunt.file.findup: seems to be flakey in < 4.0
 
-    path = options.docs + '/' + preprocessor + '/',
+        evidence = {
+          actual: grunt.file.read(grunt.file.expand('tmp/' + path)[0]),
+          expected: grunt.file.read(grunt.file.expand('test/expected/' + path)[0]),
+          description: 'should generate a ${preprocessor} styleguide.'.replace('${preprocessor}', preprocessor)
+        };
 
-    evidence = {
-      actual: grunt.file.read(grunt.file.findup('tmp/' + path, options.file)),
-      expected: grunt.file.read(grunt.file.findup('test/expected/' + path, options.file)),
-      description: 'should generate styleguide for ${preprocessor} correctly.'.replace('${framework}', framework).replace('${preprocessor}', preprocessor)
+      return evidence;
+
     };
-
-  return evidence;
-
-};
 
 exports.styleguide = {
 
   setUp: function(done) {
 
-    // setup here if necessary
+    // setup here if necessar
     done();
 
   },
@@ -69,8 +51,6 @@ exports.styleguide = {
       less: function(test) {
 
         var evidence = getEvidence('styledocco','less');
-
-        console.log(evidence);
 
         test.expect(1);
         test.equal(evidence.actual, evidence.expected, evidence.description);

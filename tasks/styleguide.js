@@ -114,7 +114,7 @@ module.exports = function(grunt) {
                         file: file,
                         src: files.length > 0 && files || grunt.file.exists(file.src) && file.src,
                         dest: file.dest,
-                        base: path.dirname(file.src).split('*')[0]
+                        base: helpers.findBasePath(files)
                     }
 
                 };
