@@ -1,19 +1,16 @@
-//
-// Buttons
-// --------------------------------------------------
+// Button Styles
+// =============
 
 // As a convention, buttons should only be used for actions while hyperlinks are to be used for objects. For instance, "Download" should be a button while "recent activity" should be a link.
 // Button styles can be applied to anything with the `btn` class applied. However, typically you'll want to apply these to only `a` and `button` elements.
 
-
 // Base styles
-// --------------------------------------------------
+// ===========
 
 // Standard gray button with gradient
 //
 //    <button class="btn">Default</button>
 
-// Core
 .btn {
   display: inline-block;
   @include ie7-inline-block();
@@ -36,7 +33,7 @@
 // States
 // ------
 // Hover state
-
+//
 //    <button class="btn :hover">Default</button>
 
   &:hover {
@@ -52,7 +49,7 @@
   }
 
 // Focus state for keyboard and accessibility
-
+//
 //    <button class="btn :focus">Default</button>
 
   // Focus state for keyboard and accessibility

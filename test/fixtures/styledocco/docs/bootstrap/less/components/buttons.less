@@ -4,15 +4,13 @@
 // As a convention, buttons should only be used for actions while hyperlinks are to be used for objects. For instance, "Download" should be a button while "recent activity" should be a link.
 // Button styles can be applied to anything with the `btn` class applied. However, typically you'll want to apply these to only `a` and `button` elements.
 
-@import "variables.less";
-@import "mixins.less";
-
 // Base styles
 // ===========
 
 // Standard gray button with gradient
 //
 //    <button class="btn">Default</button>
+
 .btn {
   display: inline-block;
   padding: 4px 10px 4px;
@@ -39,8 +37,9 @@
 // States
 // ------
 // Hover state
-
+//
 //    <button class="btn :hover">Default</button>
+
 .btn:hover {
   color: @grayDark;
   text-decoration: none;
@@ -59,7 +58,10 @@
   .tab-focus();
 }
 
+// Active state
+
 //    <button class="btn active">Active</button>
+
 .btn.active,
 .btn:active {
   background-image: none;

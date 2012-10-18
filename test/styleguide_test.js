@@ -22,27 +22,62 @@ var grunt = require('grunt');
     test.ifError(value)
 */
 
-exports.Styleguide = {
+var getEvidence = function (/* String */ framework, /* String */ preprocessor) {
+
+  // setup default options for use by tests
+  var options = {
+      docs: framework + '/docs/bootstrap',
+      file: 'fixtures-${framework}-docs-bootstrap-${preprocessor}-components-buttons.html'
+    },
+
+    path = options.docs + '/' + preprocessor + '/' + options.file.replace('${framework}', framework).replace('${preprocessor}', preprocessor),
+
+    evidence = {
+      actual: grunt.file.read('tmp/' + path),
+      expected: grunt.file.read('test/expected/' + path),
+      description: 'should generate styleguide for ${preporcessor} correctly.'.replace('${framework}', framework).replace('${preprocessor}', preprocessor)
+    };
+
+  return evidence;
+
+};
+
+exports.styleguide = {
+
   setUp: function(done) {
+
     // setup here if necessary
     done();
+
   },
-  default_options: function(test) {
-    test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+  // test cases for each supported styleguide framework
+  framework: {
 
-    test.done();
-  },
-  custom_options: function(test) {
-    test.expect(1);
+    styledocco: {
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+      sass: function(test) {
 
-    test.done();
-  },
+        var evidence = getEvidence('styledocco','sass');
+
+        test.expect(1);
+        test.equal(evidence.actual, evidence.expected, evidence.description);
+        test.done();
+
+      },
+
+      less: function(test) {
+
+        var evidence = getEvidence('styledocco','less');
+
+        test.expect(1);
+        test.equal(evidence.actual, evidence.expected, evidence.description);
+        test.done();
+
+      }  
+
+    }
+
+  }
+
 };

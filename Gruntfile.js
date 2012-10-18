@@ -28,16 +28,16 @@ module.exports = function(grunt) {
         // Configuration to be run (and then tested).
         styleguide: {
 
-            options: {
-                name: 'Style Guide',
-                include: ['plugin.css', 'app.js']
-            },
+            styledocco: {
 
-            dist: {
+                options: {
+                    name: 'Style Guide',
+                    include: ['plugin.css', 'app.js']
+                },                
 
                 files: {
-                    'tmp/bootstap/less': 'test/fixtures/bootstrap/**/*.less',
-                    'tmp/bootstap/sass': 'test/fixtures/bootstrap/sass/**/*.scss'              
+                    'tmp/styledocco/docs/bootstrap/less': 'test/fixtures/styledocco/docs/bootstrap/**/*.less',
+                    'tmp/styledocco/docs/bootstrap/sass': 'test/fixtures/styledocco/docs/bootstrap/sass/**/*.scss'              
                 },
 
             }
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'styleguide']);
+    grunt.registerTask('test', ['clean', 'styleguide', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);
