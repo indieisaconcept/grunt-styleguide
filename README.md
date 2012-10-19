@@ -1,4 +1,4 @@
-# grunt-styleguide
+# grunt-styleguide [![build status](https://secure.travis-ci.org/indieisaconcept/grunt-styleguide.png)](http://travis-ci.org/indieisaconcept/grunt-styleguide)
 
 > Universal CSS styleguide generator for grunt
 
