@@ -2,6 +2,10 @@
 
 > Universal CSS styleguide generator for grunt
 
+## Supported frameworks
+
+- [styledocco][]
+
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
 
