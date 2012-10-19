@@ -13,11 +13,25 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
 
-        jshint: {
+        lint: {
             all: ['Gruntfile.js', 'tasks/**/*.js', '<%= nodeunit.tests %>', ],
-            options: {
-                jshintrc: '.jshintrc',
-            },
+        },
+
+        jshint: {
+          options: {
+            curly: true,
+            eqeqeq: true,
+            immed: true,
+            latedef: true,
+            newcap: true,
+            noarg: true,
+            sub: true,
+            undef: true,
+            boss: true,
+            eqnull: true,
+            node: true,
+            es5: true
+            }
         },
 
         // Before generating any new files, remove any previously-created files.
@@ -65,6 +79,6 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['clean', 'styleguide', 'nodeunit']);
 
     // By default, lint and run all tests.
-    grunt.registerTask('default', ['jshint', 'test']);
+    grunt.registerTask('default', ['lint', 'test']);
 
 };
