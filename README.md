@@ -258,6 +258,11 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 0.1.1
+
++ Travis support
++ Grunt compatibility tweaks
+
 ### 0.1.0
 
 + Initial Release
