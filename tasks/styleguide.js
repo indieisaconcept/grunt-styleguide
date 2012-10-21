@@ -45,8 +45,12 @@ module.exports = function(grunt) {
                     extensions = [],
                     preprocessor;
 
+                if (_.isEmpty(files)) {
+                    return preprocessor;
+                }
+
                 // collect all the possible extensions
-                files.forEach(function (/* string */ file, /* number */ index) {
+                files.forEach(function (/* string */ file) {
 
                     var ext = path.extname(file).split('.');
 
@@ -61,7 +65,7 @@ module.exports = function(grunt) {
                 // remove duplicates
                 extensions = _.uniq(extensions);
 
-                preprocessor = _.find(Object.keys(plugin.preprocessors), function (/* String */ key, /* number */ index) {
+                preprocessor = _.find(Object.keys(plugin.preprocessors), function (/* String */ key) {
 
                     var value = plugin.preprocessors[key],
                         exts = value.split(/[,\s]+/),
@@ -156,7 +160,7 @@ module.exports = function(grunt) {
             //    });
             //
 
-            framework(styleguide, function(error, result) {
+            framework(styleguide, function(error) {
 
                 var msg = 'DEST: ' + styleguide.files.dest + '/index.html';
 

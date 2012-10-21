@@ -1,0 +1,29 @@
+/*
+Links
+
+:hover - hovering on the link
+.foo - foo links
+.baa - baa links
+
+Styleguide 1.2
+*/
+
+a {
+	text-decoration: none;
+	color: red;
+	font-family: monospace;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a.foo {
+	color: #ccc;
+	text-decoration:underline;
+}
+
+a.baa {
+	color: #003366;
+	font-family: georgia, serif;
+}

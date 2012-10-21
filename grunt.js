@@ -45,13 +45,45 @@ module.exports = function(grunt) {
             styledocco: {
 
                 options: {
+
+                    framework: {
+                        name: 'styledocco'
+                    },
+
                     name: 'Style Guide',
-                    include: ['plugin.css', 'app.js']
+
+                    template: {
+                        include: ['plugin.css', 'app.js']
+                    }
+
                 },
 
                 files: {
                     'tmp/styledocco/docs/bootstrap/less': 'test/fixtures/styledocco/docs/bootstrap/**/*.less',
                     'tmp/styledocco/docs/bootstrap/sass': 'test/fixtures/styledocco/docs/bootstrap/**/*.{scss,sass}'
+                },
+
+            },
+
+            jss: {
+
+                options: {
+
+                    framework: {
+                        name: 'jss'
+                    },
+
+                    name: 'Style Guide',
+
+                    template: {
+                        src: ['test/fixtures/jss/docs/templates/views/**/*'],
+                        include: ['test/fixtures/jss/docs/templates/public/**/*'],
+                    }
+
+                },
+
+                files: {
+                    'tmp/jss/docs/css': 'test/fixtures/jss/docs/templates/public/**/*.css',
                 },
 
             }

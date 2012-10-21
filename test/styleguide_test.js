@@ -2,12 +2,12 @@
 
 var grunt = require('grunt'),
 
-    getEvidence = function (/* String */ framework, /* String */ preprocessor) {
+    getEvidence = function (/* String */ framework, /* String */ preprocessor, /* String */ base, /* String */ file) {
 
       // setup default options for use by tests
       var options = {
-          docs: framework + '/docs/bootstrap/' + preprocessor,
-          file: '*components-buttons.html'
+          docs: framework + (base || '/docs/bootstrap/') + preprocessor,
+          file: file || '*components-buttons.html'
         },
 
         path = options.docs + '/' + options.file,
@@ -56,7 +56,21 @@ exports.styleguide = {
         test.equal(evidence.actual, evidence.expected, evidence.description);
         test.done();
 
-      }  
+      }
+
+    },
+
+    jss: {
+
+      css: function(test) {
+
+        var evidence = getEvidence('jss','css', '/docs/', 'index.html');
+
+        test.expect(1);
+        test.equal(evidence.actual, evidence.expected, evidence.description);
+        test.done();
+
+      }
 
     }
 

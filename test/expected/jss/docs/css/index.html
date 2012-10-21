@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title></title>
+
+  <link rel="stylesheet" href="../../../../test/fixtures/jss/docs/templates/public/css/buttons.css?v=1325892099000" type="text/css" />
+  <link rel="stylesheet" href="../../../../test/fixtures/jss/docs/templates/public/css/layout.css?v=1326676332000" type="text/css" />
+  <link rel="stylesheet" href="../../../../test/fixtures/jss/docs/templates/public/css/links.css?v=1326495769000" type="text/css" />
+
+</head>
+<body>
+
+  <header>
+    Styleguide Example
+  </header>
+
+  <div id="wrapper">
+
+    <nav role="main">
+<ul>
+        <li><a href="#1.1">1.1 buttons.css</a></li>
+        <li><a href="#1.2">1.2 links.css</a></li>
+</ul>
+    </nav>
+
+
+<div class="styleguide-example">
+
+  <h3 id="1.1">1.1 <em>buttons.css</em></h3>
+  <div class="styleguide-description">
+    <p>
+Your standard form button.</p>
+	<!-- TODO: don't show this if there are no modifiers.-->
+      <ul class="styleguide-modifier">
+        <li><strong>:hover</strong> - Highlights when hovering.</li>
+        <li><strong>:disabled</strong> - Dims the button when disabled.</li>
+        <li><strong>.primary</strong> - Indicates button is the primary action.</li>
+        <li><strong>.smaller</strong> - A smaller button</li>
+      </ul>
+    <!-- end TODO -->
+  </div>
+  <div class="styleguide-element">
+    	<button class="$modifier_class">Example Button</button>
+
+  </div>
+      <div class="styleguide-element styleguide-modifier">
+      <span class="styleguide-modifier-name">:hover</span>
+	  	<button class="pseudo-class-hover">Example Button</button>
+
+	</div>
+    <div class="styleguide-element styleguide-modifier">
+      <span class="styleguide-modifier-name">:disabled</span>
+	  	<button class="pseudo-class-disabled">Example Button</button>
+
+	</div>
+    <div class="styleguide-element styleguide-modifier">
+      <span class="styleguide-modifier-name">.primary</span>
+	  	<button class="primary">Example Button</button>
+
+	</div>
+    <div class="styleguide-element styleguide-modifier">
+      <span class="styleguide-modifier-name">.smaller</span>
+	  	<button class="smaller">Example Button</button>
+
+	</div>
+
+</div>
+
+
+
+<div class="styleguide-example">
+
+  <h3 id="1.2">1.2 <em>links.css</em></h3>
+  <div class="styleguide-description">
+    <p>
+Links</p>
+	<!-- TODO: don't show this if there are no modifiers.-->
+      <ul class="styleguide-modifier">
+        <li><strong>:hover</strong> - hovering on the link</li>
+        <li><strong>.foo</strong> - foo links</li>
+        <li><strong>.baa</strong> - baa links</li>
+      </ul>
+    <!-- end TODO -->
+  </div>
+  <div class="styleguide-element">
+    	<a class="$modifier_class" href="#">Example Link</a>
+
+  </div>
+      <div class="styleguide-element styleguide-modifier">
+      <span class="styleguide-modifier-name">:hover</span>
+	  	<a class="pseudo-class-hover" href="#">Example Link</a>
+
+	</div>
+    <div class="styleguide-element styleguide-modifier">
+      <span class="styleguide-modifier-name">.foo</span>
+	  	<a class="foo" href="#">Example Link</a>
+
+	</div>
+    <div class="styleguide-element styleguide-modifier">
+      <span class="styleguide-modifier-name">.baa</span>
+	  	<a class="baa" href="#">Example Link</a>
+
+	</div>
+
+</div>
+
+
+<p>This block above was created with a simple template call:</p>
+<pre><code>&#123;&#123;#styleguide_block&#125;&#125; 1.1
+	&lt;button class="$modifier_class"&gt;Example Button&lt;/button&gt;
+&#123;&#123;/styleguide_block&#125;&#125;</code></pre>
+<p>
+  Take a look at the source code to this Express app for more details. The goal
+  is to remove the pain from creating a styleguide — document your CSS, have
+  example HTML in your templates and automate as much as possible.
+</p>
+
+  </div><!-- /#wrapper -->
+
+    <div class="resources">
+             <script src="../../../../test/fixtures/jss/docs/templates/public/js/kss.js?v=1325893853000"></script>
+    </div>
+
+</body>
+</html>
