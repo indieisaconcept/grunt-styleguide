@@ -96,6 +96,7 @@ grunt.initConfig({
   
 })
 ```
+An example configuration can be view [here](https://gist.github.com/3932026)
 
 #### Options
 
