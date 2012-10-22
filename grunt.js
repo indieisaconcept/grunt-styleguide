@@ -76,8 +76,16 @@ module.exports = function(grunt) {
                     name: 'Style Guide',
 
                     template: {
+
                         src: ['test/fixtures/jss/docs/templates/views/**/*'],
                         include: ['test/fixtures/jss/docs/templates/public/**/*'],
+
+                        // mapping for template items
+                        mapping: {
+                            'layout': 'layouts_default',
+                            'styleguide': 'partials_styleguide_block'
+                        }
+
                     }
 
                 },

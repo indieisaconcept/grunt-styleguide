@@ -26,7 +26,17 @@ module.exports = {
 
             var files = styleguide.files,
                 options = styleguide.options,
+                template = styleguide.template,
                 sections = [];
+
+            // setup default template mappings
+            // for rendering a layout and a styleguide
+            // block
+            template.mapping = template.mapping || {};
+            _.defaults(template.mapping, {
+                'layout': 'layouts_default',
+                'styleguide': 'partials_styleguide_block'
+            });
 
             grunt.util.async.series({
 
@@ -36,7 +46,7 @@ module.exports = {
 
                         cache.templates = {};
 
-                        var files = grunt.file.expandFiles(options.template.src),
+                        var files = grunt.file.expandFiles(template.src),
                             base = helpers.findBasePath(files);
 
                         grunt.util.async.forEachSeries(files, function(file, next) {
@@ -95,10 +105,14 @@ module.exports = {
                 styleguide: function(callback) {
 
                     var templates = cache.templates,
-                        layout = templates.layouts_default,
+
+                        // template mappings
+                        layout = templates[template.mapping.layout] || '',
+                        styleguideBlock = templates[template.mapping.styleguide] || '',
+
 
                         // used for including external resources
-                        includes = grunt.file.expandFiles(options.template.include),
+                        includes = grunt.file.expandFiles(template.include),
                         dest = path.resolve(files.dest),
                         resources = {};
 
@@ -196,7 +210,7 @@ module.exports = {
 
                                             };
 
-                                            return Mustache.render(templates.partials_styleguide_block, data);
+                                            return Mustache.render(styleguideBlock, data);
 
                                         };
                                     }

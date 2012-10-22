@@ -13,7 +13,6 @@ module.exports = {
     init: function (grunt) {
 
         var styledocco = require('styledocco/cli'),
-            utils = grunt.util || grunt.utils,
 
             // proecessor specific arguemnts
             processors = {
@@ -23,12 +22,15 @@ module.exports = {
         return function (styleguide, callback) {
 
             var files = styleguide.files,
-                options = styleguide.options,
+                options = styleguide.framework && styleguide.framework.options || {},
                 preprocessor = !options.preprocessor ? styleguide.preprocessor && processors[styleguide.preprocessor] : options.preprocessor;
 
+            // default styledocco options
+            options.name = styleguide.name;
             options.in = files.src;
             options.out = files.dest;
             options.basePath = files.base;
+            options.include = styleguide.template.include;
 
             // specify processor if needed
             if (preprocessor) {

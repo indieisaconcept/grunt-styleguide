@@ -17,13 +17,14 @@ module.exports = function(grunt) {
     var fs = require('fs'),
         path = require('path'),
         helpers = require('grunt-lib-contrib').init(grunt),
-        plugin = {};
+        plugin = {},
+        _;
 
     // TODO: ditch this when grunt v0.4 is released
     grunt.file.exists = grunt.file.exists || fs.existsSync || path.existsSync;
-
-    // TODO: ditch this when grunt v0.4 is released
     grunt.util = grunt.util || grunt.utils;
+
+    _ = grunt.util._,
 
     // ==================================
     // PLUGIN DEFAULTS
@@ -37,47 +38,60 @@ module.exports = function(grunt) {
 
         util: {
 
-            // processor
-            // Determine the CSS processor to use based on an array of files
-            getPreprocessor: function(/* Array */ files) {
+            get: {
 
-                var _ = grunt.util._,
-                    extensions = [],
-                    preprocessor;
+                // framework
+                framework: function (/* String */ name) {
 
-                if (_.isEmpty(files)) {
-                    return preprocessor;
-                }
+                    var framework;
 
-                // collect all the possible extensions
-                files.forEach(function (/* string */ file) {
-
-                    var ext = path.extname(file).split('.');
-
-                    ext = ext[ext.length - 1];
-
-                    if (ext.length > 0) {
-                        extensions.push(ext);
+                    try {
+                        framework = require('./lib/' + name);
+                        framework = framework.init(grunt);
+                    } catch(err) {
+                        grunt.fail.warn('Unsupported styleguide framework, see https://github.com/indieisaconcept/grunt-styleguide');
                     }
 
-                });
+                    return framework;
 
-                // remove duplicates
-                extensions = _.uniq(extensions);
+                },
 
-                preprocessor = _.find(Object.keys(plugin.preprocessors), function (/* String */ key) {
+                // processor
+                // Determine the CSS processor to use based on an array of files
+                preprocessor: function(/* Array */ files) {
 
-                    var value = plugin.preprocessors[key],
-                        exts = value.split(/[,\s]+/),
-                        matches = _.filter(extensions, function (/* String */ ext) {
-                            return exts.indexOf(ext) !== -1;
-                        });
+                    var preprocessor;
 
-                    return !_.isEmpty(matches);
+                    if (_.isEmpty(files)) {
+                        return preprocessor;
+                    }
 
-                });
+                    // collect all the possible extensions
+                    // and remove duplicates
+                    files = _.chain(files).map(function (/* string */ file) {
 
-                return preprocessor;
+                        var ext = path.extname(file).split('.');
+
+                        return ext[ext.length - 1];
+
+                    }).uniq().value();
+
+                    preprocessor = _.find(Object.keys(plugin.preprocessors), function (/* String */ key) {
+
+                        var value = plugin.preprocessors[key],
+                            exts = value.split(/[,\s]+/),
+
+                            matches = _.filter(files, function (/* String */ ext) {
+                                return exts.indexOf(ext) !== -1;
+                            });
+
+                        return !_.isEmpty(matches);
+
+                    });
+
+                    return preprocessor;
+
+                }
 
             }
 
@@ -93,74 +107,62 @@ module.exports = function(grunt) {
 
         grunt.log.write(grunt.util.linefeed);
 
-        var options = this.options && this.options() || helpers.options(this), // TODO: ditch this when grunt v0.4 is released
-            framework = options.framework || 'styledocco',
-            done = this.async();
+        var styleguide = this.options && this.options() || helpers.options(this), // TODO: ditch this when grunt v0.4 is released
+            done = this.async(),
+            generator,
+            framework;
 
-        // initialize the framework
-        framework = grunt.util._.isFunction(framework) ? framework : require('./lib/' + framework);
-        framework = framework.init(grunt),
+        framework = styleguide.framework || {
+            name: 'styledocco'
+        };
+
+        // initialize the framework passed
+        generator = grunt.util._.isFunction(framework) ? framework : plugin.util.get.framework(framework.name);
+
+        // rationalize templates object and add backwards
+        // compatibility for options.include
+
+        styleguide.template = styleguide.template || {};
+        styleguide.template.include = styleguide.template.include || styleguide.include || [];
+
+        // expand files for includes and template sources
+        ['src', 'include'].forEach(function (/* String */ key) {
+            if (styleguide.template[key]) {
+                styleguide.template[key] = grunt.file.expandFiles(styleguide.template[key]);
+            }
+        });
+
+        // rationalized framework options
+        styleguide.options = framework.options || {};
 
         // TODO: ditch this when grunt v0.4 is released
         this.files = this.files || helpers.normalizeMultiTaskFiles(this.data, this.target);
 
-        grunt.verbose.writeflags(options, 'options');
+        grunt.verbose.writeflags(styleguide, 'options');
 
         grunt.util.async.forEachSeries(this.files, function(file, next) {
 
-            var files = grunt.file.expandFiles(file.src),
+            var files = grunt.file.expandFiles(file.src);
 
-                styleguide = {
+            // rationalize file object
 
-                    options: options,
+            styleguide.files = {
 
-                    files: {
-                        file: file,
-                        src: files.length > 0 && files || grunt.file.exists(file.src) && file.src,
-                        dest: file.dest,
-                        base: helpers.findBasePath(files)
-                    }
+                file: file,
+                src: files.length > 0 && files || grunt.file.exists(file.src) && file.src,
+                dest: file.dest,
+                base: helpers.findBasePath(files)
 
-                };
+            };
 
             // identify the preporcess to use
-            styleguide.preprocessor = plugin.util.getPreprocessor(styleguide.files.src);
+            styleguide.preprocessor = plugin.util.get.preprocessor(styleguide.files.src);
 
             if(grunt.util._.isEmpty(styleguide.files.src)) {
                 grunt.fail.warn('Unable to generate styleguide; no valid source files were found.');
             }
 
-            // framework:
-            // All registered styleguides frameworks when initialized should return a function
-            // which has the following argument signature.
-            //
-            // options:   configuration options for the styleguide framework
-            // callback:  function to support async execution
-            //
-            //    framework({
-            //
-            //      preprocessor: 'less',
-            //
-            //      options: {
-            //          // framework options
-            //      },
-            //
-            //      files: {
-            //          file: file
-            //          src: ['path/to/files'],
-            //          dest: ['path/to/destination'],
-            //          base: ['base/path']
-            //      }
-            //
-            //    }, function () {
-            //
-            //      // execute some command
-            //      next()
-            //
-            //    });
-            //
-
-            framework(styleguide, function(error) {
+            generator(styleguide, function(error) {
 
                 var msg = 'DEST: ' + styleguide.files.dest + '/index.html';
 
