@@ -2,9 +2,48 @@
 
 > Universal CSS styleguide generator for grunt
 
-## Supported frameworks
+## Frameworks
+
+[styledocco]: http://jacobrask.github.com/styledocco/
+[node-kss]: https://github.com/hughsk/kss-node
+[jss-styles]: https://github.com/jesseditson/jss
+[extending grunt-styleguide]: doc/extending_grunt_styleguide.md
+
+### Supported
+
+<table>
+  <tr>
+    <th>Framework</th>
+    <th>Preprocessor</th>
+	<th>Templates</th>   
+  </tr><tr>
+    <td><a href="http://jacobrask.github.com/styledocco/">styledocco</a></td>
+    <td>LESS, SASS</td>
+    <td>Default template providd by styldocco is  used</td>    
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Framework</th>
+    <th>Preprocessor</th>
+	<th>Templates</th>   
+  </tr>
+  <tr>
+    <td><a href="https://github.com/jesseditson/jss">JSS-Styles</a></td>
+    <td>None</td>
+    <td>Template can be configured to include files post compile</td>    
+  </tr>
+</table>
+
+> Athough there is no preprocessor support files can stil be processed and documentation generated. Use the template include option to add references of the compiled CSS to the guide. 
 
 - [styledocco][]
+- [jss-styles][]
+
+## Planned
+
+- [node-kss][] (v0.3.0)
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
@@ -37,21 +76,18 @@ grunt.initConfig({
 
   styleguide: {
   
-    // Task-specific options go here.
     options: {
-      framework: 'styledocco'
+      // global options
     },
     
     your_target: {
     	
-    	// Target-specific options go here.
-	    options: {
-	        name: 'Style Guide',
-	        include: ['plugin.css', 'app.js']
-	    },
+    	options: {
+    		// task options
+    	},
 	
 	    files: {
-	        'docs': 'stylesheets/sass/*.scss'                  
+	        // files to process                
 	    }
       
     }
@@ -63,79 +99,59 @@ grunt.initConfig({
 
 #### Options
 
-**grunt-styleguide** supports two levels of options, "task" which apply to all targets and those that can also be overriden on a target by target basis which are options specific to the styleguide framework in use.
+By default **grunt-styleguide** will attempt to rationalize options for each of the styleguide frameworks supported depending upon the features available to the framework in use.
 
-#### Task Defaults
+##### Defaults
 
 <table>
   <tr>
-    <th>Key</th><th>Type</th><th>Default</th><th>Description</th>
-  </tr>
-  <tr>
-    <td>framework</td><td>String or function (*)</td><td>styledocco</td><td>Used to specify which framework to use for the styleguide generation</td>
+    <th>Key</th>
+    <th>Type</th>
+	<th>Required</th>    
+    <th>Description</th>
+  </tr><tr>
+    <td>framework</td>
+    <td>String, object, function (*)</td>
+    <td>No</td>
+    <td>Details about the styleguide framework</td>    
+  </tr><tr>
+    <td>name</td>
+    <td>String</td>
+    <td>No</td>
+    <td>Title of the styleguide</td>    
+  </tr><tr>
+    <td>template</td>
+    <td>Object</td>
+    <td>No</td>
+    <td>Details of the templetes to use for rendering if supported</td>    
   </tr>
 </table>
 
-> \* See extending grunt-styleguide 
+> \* See [extending grunt-styleguide]()
 
 #### Framework Options
-Framework options are used to pass the appropriate arguments to a styleguide generator. These options have a 1:1 mapping to the frameworks available options.
 
-By default **grunt-styleguide** will determine the CSS preprocess in use by evaluating the selected source files. This value will be passed as an option to framework plugins.
-
-Future versions of **grunt-styleguide** will further rationalize these options for all frameworks.
-
-##### Currently Supported
-
-[styledocco]: http://jacobrask.github.com/styledocco/
-[node-kss]: https://github.com/hughsk/kss-node
-[kss]: http://warpspire.com/kss/
-[kss-standalone]: https://github.com/tmanderson/kss-standalone
-
-##### styledocco
-
-<table>
-  <tr>
-    <th>Key</th><th>Type</th><th>Default</th><th>Description</th>
-  </tr>
-  <tr>
-    <td>name</td><td>String</td><td>package.json name || 'Styleguide'</td><td>Name to use for the styleguide</td>
-  </tr><tr>
-    <td>include</td><td>Array</td><td>N/A</td><td>Additional CSS/JS to incluce in the generated styleguide output</td>
-  </tr>
-</table>
-
-For more details on the supported options for **styledocco** can be found [styledocco][].
-
-##### Planned
-
-By default styledocco is bundled however, future versions may provide support for the frameworks below.
-
-- [node-kss][]
-- [kss][] via [kss-standalone][]
-
-#### Extending grunt-styleguide
-
-**grunt-styleguide** is bundled with a default styleguide framework or frameworks to allow easy generation of styleguides. It is possible to add support for additional frameworks by passing a framework plugin via the "framework" task option.
-
-Framework plugins should be written in the following manner.
+Should you wish to pass additional options a framework supports these can be passed as options as part of the framework object. 
 
 ```
-module.exports = {
+styleguide: {
 
-	init: function (grunt) {
-	
-		// defaults
-		var framework = require('some/framework');
-	
-		return function (options, callback) {
+	dist: {
+
+		options: {
 		
-			framework(options, function (result) {
-			
-				callback(error, result);
-			
-			})
+			framework: {
+				name: 'framework_name',
+				options: {
+					'somearg': 'somevalue',
+					'someflag: true
+				}
+			}
 		
+		},
+		
+		files: {
+			'path/to/dest': 'path/to/source'
 		}
 	
 	}
@@ -143,49 +159,65 @@ module.exports = {
 }
 ```
 
-A framework plugin when initialized should return a function which supports the following argument signature.
+#### Template Options
 
-##### Defaults 
+Depending upon the framework, it may be possible to also pass templates to use for rending a styleguide.
+
+```
+styleguide: {
+
+	dist: {
+	
+		options: {
+		
+			template: {
+				src: ['path/to/templates'],
+				include: ['path/of/resources/to/include'],
+				mapping: {
+					'layout': 'some_template_name',
+					'styleguide': 'some_template_name'
+				}
+			}
+			
+			files: {
+				'path/to/dest': 'path/to/source'
+			}
+			
+		}
+
+	}
+
+}
+```
 
 <table>
   <tr>
-    <th>Argument</th><th>Type</th><th>Default</th><th>Description</th>
+    <th>Key</th>
+    <th>Type</th>
+	<th>Required</th>    
+    <th>Description</th>
   </tr><tr>
-    <td>styleguide</td>
+    <td>src</td>
+    <td>String, Array</td>
+    <td>No</td>
+    <td>Location of the templates to use</td>    
+  </tr><tr>
+    <td>name</td>
+    <td>String, Array</td>
+    <td>No</td>
+    <td>Title of the styleguide</td>    
+  </tr><tr>
+    <td>mapping</td>
     <td>Object</td>
-    <td>{}</td>
-    <td>Styleguide framework options</td>
-  </tr></tr>
-    <td>callback</td><td>Function</td>
-    <td>this.asnyc()</td>
-    <td>Pass the async task handler grunt provides to the styleguide framework plugin</td>
+    <td>Depends on templates</td>
+    <td>Define what templates should be used for rendering a styleguide</td>    
   </tr>
 </table>
 
-##### styleguide object
 
-<table>
-  <tr>
-    <th>Argument</th><th>Type</th><th>Default</th><th>Description</th>
-  </tr><tr>
-    <td>preprocessor</td><td>String</td><td>
-    	undefined
-    </td>
-    <td>CSS preprocessor to use </td>
-  </tr><tr>
-    <td>options</td>
-    <td>Object</td>
-    <td>{}</td>
-    <td>Styleguide framework options</td>
-  </tr><tr>
-    <td>files</td><td>Object</td><td>
-    	{}
-    </td>
-    <td>Rationalized object containing, file, src, dest and base keys which detail file specific items.</td>
-  </tr>
-</table>
+#### CSS Preprocessors
 
-**grunt-styleguide** will pass a rationalize `files` object describing the files you wish to process. These values should be mapped to the equivalent arguments provided by the framework.
+By default **grunt-styleguide** will determine the CSS preprocessor to use by evaluating the selected source files. This value will be passed as an option to framework and if supported will be used by it.
 
 ### Usage Examples
 
@@ -211,52 +243,17 @@ grunt.initConfig({
 });
 ```
 
-#### External grunt-styleguide Plugin
-
-This example is similiar to the above except that the framework to use is explictly stated as either a name or function to be used.
-
-```
-grunt.initConfig({
-
-  styleguide: {
-  	
-  	// global framework override
-  	options: {
-  		framework: 'someother-framework'
-  	}
-  
-  	dist: {
-  	
-	    files: {
-	      'docs/core': 'stylesheets/sass/core/*.scss',    
-	      'docs/plugins': 'stylesheets/sass/plugins/*.scss',
-	    }  	
-  	
-  	}
-  	
-  	dist: {
-  		
-  		// target based framework override
-  		options: {
-  			framework: require('someother-framework')
-  		},
-  	
-	    files: {
-	      'docs/core': 'stylesheets/sass/core/*.scss',    
-	      'docs/plugins': 'stylesheets/sass/plugins/*.scss',
-	    }  	
-  	
-  	}  	
- 
-  }
-  
-});
-```
-
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
 
 ## Release History
+
+### 0.2.0
+
++ Revised documentation
++ Added JSS-Styles support
++ Revised options structure
++ Introduced template options
 
 ### 0.1.1
 
