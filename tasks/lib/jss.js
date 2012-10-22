@@ -128,14 +128,11 @@ module.exports = {
 
                     }, function () {
 
-                        var styleguide,
-                            view;
-
-                        view = {
+                        var view = {
 
                             styleguide: {
 
-                                name: options.name,
+                                name: styleguide.name || 'Styleguide',
                                 sections: sections,
                                 includes: resources,
 
@@ -220,8 +217,7 @@ module.exports = {
                         };
 
                         // render blocks
-                        styleguide = Mustache.render(layout, view, templates);
-                        callback(styleguide);
+                        callback(Mustache.render(layout, view, templates));
 
                     });
 
