@@ -19,7 +19,7 @@
   </tr><tr>
     <td><a href="http://jacobrask.github.com/styledocco/">styledocco</a></td>
     <td>LESS, SASS</td>
-    <td>Default template providd by styldocco is  used</td>    
+    <td>Default template is provided by styledocco is used</td>    
   </tr>
 </table>
 
@@ -36,10 +36,7 @@
   </tr>
 </table>
 
-> Athough there is no preprocessor support files can stil be processed and documentation generated. Use the template include option to add references of the compiled CSS to the guide. 
-
-- [styledocco][]
-- [jss-styles][]
+> Athough there is no preprocessor support files can still be processed and documentation generated. Use the template include option to add references to the compiled CSS into the generated styleguide.
 
 ## Planned
 
@@ -108,22 +105,32 @@ By default **grunt-styleguide** will attempt to rationalize options for each of 
   <tr>
     <th>Key</th>
     <th>Type</th>
+    <th>Default</th>
 	<th>Required</th>    
     <th>Description</th>
   </tr><tr>
     <td>framework</td>
     <td>String, object, function (*)</td>
+    <td>styledocco</td>
     <td>No</td>
     <td>Details about the styleguide framework</td>    
   </tr><tr>
     <td>name</td>
     <td>String</td>
+	<td>undefined</td>    
     <td>No</td>
     <td>Title of the styleguide</td>    
   </tr><tr>
     <td>template</td>
     <td>Object</td>
+	<td>Template bundled with framework</td>    
     <td>No</td>
+    <td>Details of the templetes to use for rendering if supported</td>    
+  </tr><tr>
+    <td>files</td>
+    <td>Object, String, Array</td>
+    <td>undefined</td>    
+    <td>Yes</td>
     <td>Details of the templetes to use for rendering if supported</td>    
   </tr>
 </table>
@@ -132,7 +139,7 @@ By default **grunt-styleguide** will attempt to rationalize options for each of 
 
 #### Framework Options
 
-Should you wish to pass additional options a framework supports these can be passed as options as part of the framework object. 
+Should you wish to pass additional options which are supported by a framework then these can be passed as an options as part of the framework object. 
 
 ```
 styleguide: {
@@ -210,7 +217,7 @@ styleguide: {
   </tr><tr>
     <td>mapping</td>
     <td>Object</td>
-    <td>Depends on templates</td>
+    <td>No</td>
     <td>Define what templates should be used for rendering a styleguide</td>    
   </tr>
 </table>
