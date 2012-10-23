@@ -19,7 +19,7 @@
   </tr><tr>
     <td><a href="http://jacobrask.github.com/styledocco/">styledocco</a></td>
     <td>LESS, SASS</td>
-    <td>Default template is provided by styledocco is used</td>    
+    <td>Default template provided by styledocco is used</td>    
   </tr>
 </table>
 
@@ -32,7 +32,7 @@
   <tr>
     <td><a href="https://github.com/jesseditson/jss">JSS-Styles</a></td>
     <td>None</td>
-    <td>Template can be configured to include files post compile</td>    
+    <td>Template can be configured to include files post compile and custom templates can be used</td>    
   </tr>
 </table>
 
@@ -221,6 +221,12 @@ styleguide: {
     <td>Define what templates should be used for rendering a styleguide</td>    
   </tr>
 </table>
+
+Depending upon the framework you wish to use example templates can be found in:
+
+`node_modules/grunt-styleguide/test/fixtures/<framwork.name>/docs/templates`
+
+Copy these to the location a folder part of your project and modify to support your individual requirements.
 
 
 #### CSS Preprocessors
