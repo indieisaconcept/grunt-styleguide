@@ -23,6 +23,8 @@
   </tr>
 </table>
 
+<!--
+
 <table>
   <tr>
     <th>Framework</th>
@@ -37,6 +39,9 @@
 </table>
 
 > Athough there is no preprocessor support files can still be processed and documentation generated. Use the template include option to add references to the compiled CSS into the generated styleguide.
+
+-->
+
 
 ## Planned
 
