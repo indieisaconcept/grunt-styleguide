@@ -14,7 +14,7 @@
     <th>Templates</th><br>  </tr><tr>
     <td><a href="http://jacobrask.github.com/styledocco/">styledocco</a></td>
     <td>LESS, SASS</td>
-    <td>Default template providd by styldocco is  used</td><br>  </tr>
+    <td>Default template is provided by styledocco is used</td><br>  </tr>
 </table>
 
 <table>
@@ -29,14 +29,10 @@
 </table>
 
 <blockquote>
-<p>Athough there is no preprocessor support files can stil be processed and documentation generated. Use the template include option to add references of the compiled CSS to the guide. 
+<p>Athough there is no preprocessor support files can still be processed and documentation generated. Use the template include option to add references to the compiled CSS into the generated styleguide.
 
 </p>
 </blockquote>
-<ul>
-<li><a href="http://jacobrask.github.com/styledocco/">styledocco</a></li>
-<li><a href="https://github.com/jesseditson/jss">jss-styles</a></li>
-</ul>
 <h2 id="planned">Planned</h2>
 <ul>
 <li><a href="https://github.com/hughsk/kss-node">node-kss</a> (v0.3.0)</li>
@@ -95,19 +91,25 @@
   <tr>
     <th>Key</th>
     <th>Type</th>
+    <th>Default</th>
     <th>Required</th><br>    <th>Description</th>
   </tr><tr>
     <td>framework</td>
     <td>String, object, function (*)</td>
+    <td>styledocco</td>
     <td>No</td>
     <td>Details about the styleguide framework</td><br>  </tr><tr>
     <td>name</td>
     <td>String</td>
-    <td>No</td>
+    <td>undefined</td><br>    <td>No</td>
     <td>Title of the styleguide</td><br>  </tr><tr>
     <td>template</td>
     <td>Object</td>
-    <td>No</td>
+    <td>Template bundled with framework</td><br>    <td>No</td>
+    <td>Details of the templetes to use for rendering if supported</td><br>  </tr><tr>
+    <td>files</td>
+    <td>Object, String, Array</td>
+    <td>undefined</td><br>    <td>Yes</td>
     <td>Details of the templetes to use for rendering if supported</td><br>  </tr>
 </table>
 
@@ -117,7 +119,7 @@
 </p>
 </blockquote>
 <h4 id="framework-options">Framework Options</h4>
-<p>Should you wish to pass additional options a framework supports these can be passed as options as part of the framework object. 
+<p>Should you wish to pass additional options which are supported by a framework then these can be passed as an options as part of the framework object. 
 
 </p>
 <textarea class="preview-code" spellcheck="false">styleguide: {
@@ -185,7 +187,7 @@
     <td>Title of the styleguide</td><br>  </tr><tr>
     <td>mapping</td>
     <td>Object</td>
-    <td>Depends on templates</td>
+    <td>No</td>
     <td>Define what templates should be used for rendering a styleguide</td><br>  </tr>
 </table>
 
