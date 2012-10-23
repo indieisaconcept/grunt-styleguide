@@ -5,7 +5,7 @@
 ## Frameworks
 
 [styledocco]: http://jacobrask.github.com/styledocco/
-[node-kss]: https://github.com/hughsk/kss-node
+[kss-node]: https://github.com/hughsk/kss-node
 [jss-styles]: https://github.com/jesseditson/jss
 [extending grunt-styleguide]: /grunt-styleguide/blob/jss/docs/extending_grunt-styleguide.md
 
@@ -18,34 +18,21 @@
 	<th>Templates</th>   
   </tr><tr>
     <td><a href="http://jacobrask.github.com/styledocco/">styledocco</a></td>
-    <td>LESS, SASS</td>
+    <td>Less, SASS</td>
     <td>Default template provided by styledocco is used</td>    
-  </tr>
-</table>
-
-<!--
-
-<table>
-  <tr>
-    <th>Framework</th>
-    <th>Preprocessor</th>
-	<th>Templates</th>   
-  </tr>
-  <tr>
+  </tr><tr>
+    <td><a href="https://github.com/hughsk/kss-node">kss-node</a></td>
+    <td>Less</td>
+    <td>Template can be configured to include files post compile and custom templates can be used</td>    
+  </tr><tr>
     <td><a href="https://github.com/jesseditson/jss">JSS-Styles</a></td>
     <td>None</td>
     <td>Template can be configured to include files post compile and custom templates can be used</td>    
   </tr>
 </table>
 
-> Athough there is no preprocessor support files can still be processed and documentation generated. Use the template include option to add references to the compiled CSS into the generated styleguide.
+> Athough there is no preprocessor support for some framworks files can still be processed and documentation generated. Use the template include option to add references to the compiled CSS into the generated styleguide.
 
--->
-
-
-## Planned
-
-- [node-kss][] (v0.3.0)
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
@@ -172,8 +159,6 @@ styleguide: {
 }
 ```
 
-<!--
-
 #### Template Options
 
 Depending upon the framework, it may be possible to also pass templates to use for rending a styleguide.
@@ -187,11 +172,7 @@ styleguide: {
 		
 			template: {
 				src: ['path/to/templates'],
-				include: ['path/of/resources/to/include'],
-				mapping: {
-					'layout': 'some_template_name',
-					'styleguide': 'some_template_name'
-				}
+				include: ['path/of/resources/to/include']
 			}
 			
 			files: {
@@ -217,25 +198,19 @@ styleguide: {
     <td>No</td>
     <td>Location of the templates to use</td>    
   </tr><tr>
-    <td>name</td>
+    <td>include</td>
     <td>String, Array</td>
     <td>No</td>
     <td>Title of the styleguide</td>    
-  </tr><tr>
-    <td>mapping</td>
-    <td>Object</td>
-    <td>No</td>
-    <td>Define what templates should be used for rendering a styleguide</td>    
   </tr>
 </table>
 
 Depending upon the framework you wish to use example templates can be found in:
 
-`node_modules/grunt-styleguide/test/fixtures/<framwork.name>/docs/templates`
+`node_modules/grunt-styleguide/test/fixtures/<framwork.name>/templates`
 
-Copy these to the location a folder part of your project and modify to support your individual requirements.
+Copy these to a location which is part of your project and modify your gruntfile to support your individual requirements.
 
--->
 
 #### CSS Preprocessors
 
@@ -274,12 +249,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 + Revised documentation
 + Revised options structure
-
-<!--
-
 + Introduced template options
++ Introduced node-kss
++ Introduced jss-styles
 
--->
 
 ### 0.1.1
 

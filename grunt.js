@@ -78,7 +78,7 @@ module.exports = function(grunt) {
                     template: {
 
                         src: ['test/fixtures/jss/docs/templates/views/**/*'],
-                        include: ['test/fixtures/jss/docs/templates/public/**/*'],
+                        include: ['test/fixtures/jss/templates/public/**/*'],
 
                         // mapping for template items
                         mapping: {
@@ -92,6 +92,30 @@ module.exports = function(grunt) {
 
                 files: {
                     'tmp/jss/docs/css': 'test/fixtures/jss/docs/templates/public/**/*.css',
+                },
+
+            },
+
+            kss: {
+
+                options: {
+
+                    framework: {
+                        name: 'kss'
+                    },
+
+                    name: 'Style Guide',
+
+                    template: {
+
+                        src: 'test/ftures/kss/template',
+
+                    }
+
+                },
+
+                files: {
+                    'tmp/kss/docs/css': 'test/fixtures/kss/docs/**/*.less',
                 },
 
             }

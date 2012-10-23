@@ -33,7 +33,8 @@ module.exports = function(grunt) {
     plugin = {
 
         preprocessors: {
-            'sass': 'scss sass'
+            'sass': 'scss sass',
+            'less': 'less'
         },
 
         util: {
@@ -129,6 +130,8 @@ module.exports = function(grunt) {
         ['src', 'include'].forEach(function (/* String */ key) {
             if (styleguide.template[key]) {
                 styleguide.template[key] = grunt.file.expandFiles(styleguide.template[key]);
+            } else {
+                styleguide.template[key] = [];
             }
         });
 
@@ -156,7 +159,7 @@ module.exports = function(grunt) {
             };
 
             // identify the preporcess to use
-            styleguide.preprocessor = plugin.util.get.preprocessor(styleguide.files.src);
+            styleguide.preprocessor = plugin.util.get.preprocessor(files);
 
             if(grunt.util._.isEmpty(styleguide.files.src)) {
                 grunt.fail.warn('Unable to generate styleguide; no valid source files were found.');
