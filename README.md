@@ -270,7 +270,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ### 0.2.0
 
 + Revised documentation
-+ Added JSS-Styles support
 + Revised options structure
 + Introduced template options
 
