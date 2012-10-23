@@ -172,6 +172,8 @@ styleguide: {
 }
 ```
 
+<!--
+
 #### Template Options
 
 Depending upon the framework, it may be possible to also pass templates to use for rending a styleguide.
@@ -233,6 +235,7 @@ Depending upon the framework you wish to use example templates can be found in:
 
 Copy these to the location a folder part of your project and modify to support your individual requirements.
 
+-->
 
 #### CSS Preprocessors
 
@@ -271,7 +274,12 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 + Revised documentation
 + Revised options structure
+
+<!--
+
 + Introduced template options
+
+-->
 
 ### 0.1.1
 
