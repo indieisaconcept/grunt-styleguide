@@ -29,14 +29,13 @@ module.exports = {
                 defaultTemplate = path.resolve(__dirname + '../../../templates/kss'),
                 missingTemplate = template.src && grunt.file.exists(defaultTemplate) ? false : !grunt.file.exists(defaultTemplate),
 
-                argv = {},
-                msg = [];
+                argv = {};
 
             // TEMPLATE SYNC - COPY KSS TEMPLATE TO STYLEGUIDE ROOT
             if (missingTemplate) {
 
                 grunt.file.mkdir(defaultTemplate);
-                wrench.copyDirSyncRecursive(base + '/lib/template', defaultTemplate);
+                wrench.copyDirSyncRecursive(kssTemplate, defaultTemplate);
 
                 grunt.log.write('- Default KSS template in use ' + grunt.util.linefeed);
                 grunt.log.write('- ' + defaultTemplate + grunt.util.linefeed);
@@ -46,7 +45,13 @@ module.exports = {
 
             // set preprocessor options
             if (/(css|less)/.test(styleguide.preprocessor)) {
-                argv[styleguide.preprocessor] = grunt.file.isPathAbsolute(files.file.src) ? files.file.src : files.src[0];
+
+                if (!grunt.file.exists(files.file.src)) {
+                    grunt.fail.warn('Specify an absolute path to continue');
+                }
+
+                argv[styleguide.preprocessor] = files.file.src;
+
             }
 
             options.templateDirectory = template.src.length !== 0 && template.src || defaultTemplate;

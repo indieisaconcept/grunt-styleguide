@@ -79,7 +79,7 @@ module.exports = function(grunt) {
                 },
 
                 files: {
-                    'tmp/kss/docs/less': 'test/fixtures/generic/docs/**/*.less'
+                    'tmp/kss/docs/less': 'test/fixtures/generic/docs/styles.less'
                 }
 
             }
