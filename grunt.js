@@ -50,11 +50,7 @@ module.exports = function(grunt) {
                         name: 'styledocco'
                     },
 
-                    name: 'Style Guide',
-                    template: {
-                        src: 'kss',
-                        include: ['templates/kss/public/prettify.js']
-                    }
+                    name: 'Style Guide'
 
                 },
 

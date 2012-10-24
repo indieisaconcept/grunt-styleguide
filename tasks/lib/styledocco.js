@@ -17,7 +17,9 @@ module.exports = {
             // proecessor specific arguemnts
             processors = {
                 'sass': 'sass --compass'
-            };
+            },
+
+            _ = grunt.util._;
 
         return function (styleguide, callback) {
 
@@ -30,7 +32,10 @@ module.exports = {
             options.in = files.src;
             options.out = files.dest;
             options.basePath = files.base;
-            options.include = styleguide.template.include;
+
+            options.include = _.chain(styleguide.template.include).map(function (/* Object */ item) {
+                return _.pluck(item, 'path');
+            }).flatten().value();
 
             // specify processor if needed
             if (preprocessor) {

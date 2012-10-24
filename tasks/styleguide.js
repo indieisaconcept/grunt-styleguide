@@ -60,7 +60,7 @@ module.exports = function(grunt) {
                         resources[extension] = resources[extension] || [];
                         resources[extension].push({
                             url: location,
-                            file: item
+                            path: item
                         });
 
                     });
