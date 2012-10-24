@@ -13,30 +13,13 @@
     <th>Preprocessor</th>
     <th>Templates</th><br>  </tr><tr>
     <td><a href="http://jacobrask.github.com/styledocco/">styledocco</a></td>
-    <td>LESS, SASS</td>
-    <td>Default template provided by styledocco is used</td><br>  </tr>
-</table>
-
-<table>
-  <tr>
-    <th>Framework</th>
-    <th>Preprocessor</th>
-    <th>Templates</th><br>  </tr>
-  <tr>
-    <td><a href="https://github.com/jesseditson/jss">JSS-Styles</a></td>
-    <td>None</td>
+    <td>Less, SASS</td>
+    <td>Default template provided by styledocco is used</td><br>  </tr><tr>
+    <td><a href="https://github.com/hughsk/kss-node">kss-node</a></td>
+    <td>Less</td>
     <td>Template can be configured to include files post compile and custom templates can be used</td><br>  </tr>
 </table>
 
-<blockquote>
-<p>Athough there is no preprocessor support files can still be processed and documentation generated. Use the template include option to add references to the compiled CSS into the generated styleguide.
-
-</p>
-</blockquote>
-<h2 id="planned">Planned</h2>
-<ul>
-<li><a href="https://github.com/hughsk/kss-node">node-kss</a> (v0.3.0)</li>
-</ul>
 <h2 id="getting-started">Getting Started</h2>
 <p><em>If you haven&#39;t used <a href="http://gruntjs.com/">grunt</a> before, be sure to check out the <a href="https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md">Getting Started</a> guide.</em>
 
@@ -155,12 +138,8 @@
         options: {
 
             template: {
-                src: ['path/to/templates'],
-                include: ['path/of/resources/to/include'],
-                mapping: {
-                    'layout': 'some_template_name',
-                    'styleguide': 'some_template_name'
-                }
+                src: 'path/to/templates',
+                include: ['path/of/resources/to/include']
             }
 
             files: {
@@ -178,26 +157,28 @@
     <th>Required</th><br>    <th>Description</th>
   </tr><tr>
     <td>src</td>
+    <td>String</td>
+    <td>No</td>
+    <td>Location of the template to use</td><br>  </tr><tr>
+    <td>include</td>
     <td>String, Array</td>
     <td>No</td>
-    <td>Location of the templates to use</td><br>  </tr><tr>
-    <td>name</td>
-    <td>String, Array</td>
-    <td>No</td>
-    <td>Title of the styleguide</td><br>  </tr><tr>
-    <td>mapping</td>
-    <td>Object</td>
-    <td>No</td>
-    <td>Define what templates should be used for rendering a styleguide</td><br>  </tr>
+    <td>Title of the styleguide</td><br>  </tr>
 </table>
 
 <p>Depending upon the framework you wish to use example templates can be found in:
 
 </p>
-<p><code>node_modules/grunt-styleguide/test/fixtures/&lt;framwork.name&gt;/docs/templates</code>
+<p><code>node_modules/grunt-styleguide/templates/&lt;framwork.name&gt;/templates</code>
 
 </p>
-<p>Copy these to the location a folder part of your project and modify to support your individual requirements.
+<p>A generic template is provide also:
+
+</p>
+<p><code>node_modules/grunt-styleguide/templates/generic</code>
+
+</p>
+<p>Copy these to a location which is part of your project and modify your gruntfile to support your individual requirements.
 
 
 </p>
@@ -233,9 +214,9 @@
 <h3 id="020">0.2.0</h3>
 <ul>
 <li>Revised documentation</li>
-<li>Added JSS-Styles support</li>
 <li>Revised options structure</li>
 <li>Introduced template options</li>
+<li>Introduced node-kss</li>
 </ul>
 <h3 id="011">0.1.1</h3>
 <ul>

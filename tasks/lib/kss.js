@@ -1,32 +1,42 @@
+/*jshint node:true*/
 /*
  * styleguide
- * https://github.com/indieisaconcept/grunt-styleguide/tasks/lib/styledocco
+ * https://github.com/indieisaconcept/grunt-styleguide/tasks/lib/kss
  *
  * Copyright (c) 2012 Jonathan Barnett @indieisaconcept
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = {
 
     init: function (grunt) {
 
+        'use strict';
+
         var kss = require('kss'),
             path = require('path'),
             base = path.dirname(require.resolve('kss')),
-            wrench = require('wrench'),
-            tempDir = 'tmp/styleguide/template/kss';
+            wrench = require('wrench');
 
         return function (styleguide, done) {
 
             var files = styleguide.files,
                 options = styleguide.options,
+
+                // template defaults
                 template = styleguide.template,
-                missingTemplate = false,
-                defaultTemplate = base + '/lib/template',
+                kssTemplate = base + '/lib/template',
+                defaultTemplate = path.resolve(__dirname + '../../../templates/kss'),
+                missingTemplate = template.src ? false : !grunt.file.exists(defaultTemplate),
+
                 argv = {},
                 msg = [];
+
+            // TEMPLATE SYNC - COPY KSS TEMPLATE TO STYLEGUIDE ROOT
+            if (missingTemplate) {
+                grunt.file.mkdir(defaultTemplate);
+                wrench.copyDirSyncRecursive(base + '/lib/template', defaultTemplate);
+            }
 
             // set preprocessor options
             if (/(css|less)/.test(styleguide.preprocessor)) {
@@ -37,32 +47,21 @@ module.exports = {
             options.sourceDirectory = files.base;
             options.destinationDirectory = files.dest;
 
-            missingTemplate = !(options.templateDirectory && grunt.file.exists(options.templateDirectory) || false);
-
             if (options.templateDirectory === defaultTemplate) {
-                grunt.log.write('Default KSS template in use ' + defaultTemplate + grunt.util.linefeed + grunt.util.linefeed);
+                grunt.log.write('- Default KSS template in use ' + grunt.util.linefeed);
+                grunt.log.write('- ' + defaultTemplate + grunt.util.linefeed);
+                grunt.log.write('- Copy this to your project and update your gruntfile config should you wish to customise.' + grunt.util.linefeed + grunt.util.linefeed);
             }
 
             // if we dont have a template generate one
             // and then let the user know
-            if (missingTemplate) {
 
-                grunt.file.mkdir(tempDir);
-                wrench.copyDirSyncRecursive(base + '/lib/template', tempDir);
+            grunt.file.mkdir(files.dest);
+            kss.generate(options, argv, function () {
+                grunt.log.write(grunt.util.linefeed);
+                done();
+            });
 
-                msg = 'A set of templates have been generated in ' + tempDir + '. Copy them to a suitable directory and update "template.src" in your gruntfile to continue.';
-                msg = msg + grunt.util.linefeed;
-                grunt.fail.warn(msg);
-
-            } else {
-
-                grunt.file.mkdir(files.dest);
-                kss.generate(options, argv, function () {
-                    grunt.log.write(grunt.util.linefeed);
-                    done();
-                });
-
-            }
 
         };
 

@@ -24,15 +24,8 @@
     <td><a href="https://github.com/hughsk/kss-node">kss-node</a></td>
     <td>Less</td>
     <td>Template can be configured to include files post compile and custom templates can be used</td>    
-  </tr><tr>
-    <td><a href="https://github.com/jesseditson/jss">JSS-Styles</a></td>
-    <td>None</td>
-    <td>Template can be configured to include files post compile and custom templates can be used</td>    
   </tr>
 </table>
-
-> Athough there is no preprocessor support for some framworks files can still be processed and documentation generated. Use the template include option to add references to the compiled CSS into the generated styleguide.
-
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
@@ -171,7 +164,7 @@ styleguide: {
 		options: {
 		
 			template: {
-				src: ['path/to/templates'],
+				src: 'path/to/templates',
 				include: ['path/of/resources/to/include']
 			}
 			
@@ -194,9 +187,9 @@ styleguide: {
     <th>Description</th>
   </tr><tr>
     <td>src</td>
-    <td>String, Array</td>
+    <td>String</td>
     <td>No</td>
-    <td>Location of the templates to use</td>    
+    <td>Location of the template to use</td>    
   </tr><tr>
     <td>include</td>
     <td>String, Array</td>
@@ -207,7 +200,11 @@ styleguide: {
 
 Depending upon the framework you wish to use example templates can be found in:
 
-`node_modules/grunt-styleguide/test/fixtures/<framwork.name>/templates`
+`node_modules/grunt-styleguide/templates/<framwork.name>/templates`
+
+A generic template is provide also:
+
+`node_modules/grunt-styleguide/templates/generic`
 
 Copy these to a location which is part of your project and modify your gruntfile to support your individual requirements.
 
@@ -251,8 +248,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 + Revised options structure
 + Introduced template options
 + Introduced node-kss
-+ Introduced jss-styles
-
 
 ### 0.1.1
 

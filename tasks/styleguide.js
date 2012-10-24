@@ -1,3 +1,4 @@
+/*jshint node:true*/
 /*
  * Styleguide
  * https://github.com/indieisaconcept/grunt-styleguide
@@ -128,10 +129,15 @@ module.exports = function(grunt) {
 
         // expand files for includes and template sources
         ['src', 'include'].forEach(function (/* String */ key) {
-            if (styleguide.template[key]) {
-                styleguide.template[key] = grunt.file.expandFiles(styleguide.template[key]);
+
+            var pathExists = false,
+                filePath = styleguide.template[key];
+
+            if (filePath) {
+                pathExists = grunt.file.exists(filePath);
+                styleguide.template[key] = pathExists ? filePath : grunt.file.expandFiles(filePath);
             } else {
-                styleguide.template[key] = [];
+                styleguide.template[key] = undefined;
             }
         });
 
@@ -148,7 +154,6 @@ module.exports = function(grunt) {
             var files = grunt.file.expandFiles(file.src);
 
             // rationalize file object
-
             styleguide.files = {
 
                 file: file,

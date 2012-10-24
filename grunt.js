@@ -6,15 +6,15 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = function(grunt) {
+
+    'use strict';
 
     // Project configuration.
     grunt.initConfig({
 
         lint: {
-            all: ['Gruntfile.js', 'tasks/**/*.js', '<%= nodeunit.tests %>', ],
+            all: ['Gruntfile.js', 'tasks/**/*.js', '<%= nodeunit.tests %>']
         },
 
         jshint: {
@@ -61,38 +61,7 @@ module.exports = function(grunt) {
                 files: {
                     'tmp/styledocco/docs/bootstrap/less': 'test/fixtures/styledocco/docs/bootstrap/**/*.less',
                     'tmp/styledocco/docs/bootstrap/sass': 'test/fixtures/styledocco/docs/bootstrap/**/*.{scss,sass}'
-                },
-
-            },
-
-            jss: {
-
-                options: {
-
-                    framework: {
-                        name: 'jss'
-                    },
-
-                    name: 'Style Guide',
-
-                    template: {
-
-                        src: ['test/fixtures/jss/docs/templates/views/**/*'],
-                        include: ['test/fixtures/jss/templates/public/**/*'],
-
-                        // mapping for template items
-                        mapping: {
-                            'layout': 'layouts_default',
-                            'styleguide': 'partials_styleguide_block'
-                        }
-
-                    }
-
-                },
-
-                files: {
-                    'tmp/jss/docs/css': 'test/fixtures/jss/docs/templates/public/**/*.css',
-                },
+                }
 
             },
 
@@ -108,15 +77,15 @@ module.exports = function(grunt) {
 
                     template: {
 
-                        src: 'test/ftures/kss/template',
+                        src: 'kss'
 
                     }
 
                 },
 
                 files: {
-                    'tmp/kss/docs/css': 'test/fixtures/kss/docs/**/*.less',
-                },
+                    'tmp/kss/docs/less': 'test/fixtures/generic/docs/**/*.less'
+                }
 
             }
 
@@ -124,8 +93,8 @@ module.exports = function(grunt) {
 
         // Unit tests.
         nodeunit: {
-            tests: ['test/*_test.js'],
-        },
+            tests: ['test/*_test.js']
+        }
 
     });
 

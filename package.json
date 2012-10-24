@@ -45,11 +45,7 @@
   "dependencies": {
     "grunt-lib-contrib": "~0.3.0",
     "styledocco": "https://nodeload.github.com/indieisaconcept/styledocco/tarball/10c0262d53",
-    "jss-styles": "https://nodeload.github.com/indieisaconcept/jss/tarball/cfe7eede18",
-    "mustache": "~0.7.0",
-    "less": "~1.3.0",
-    "kss": "git://www.github.com/indieisaconcept/kss-node.git",
-    "handlebars": "~1.0.7",
+    "kss": "https://nodeload.github.com/indieisaconcept/kss-node/tarball/599f878d4f",
     "wrench": "~1.3.9"
   }
 }

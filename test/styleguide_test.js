@@ -60,11 +60,11 @@ exports.styleguide = {
 
     },
 
-    jss: {
+    kss: {
 
       css: function(test) {
 
-        var evidence = getEvidence('jss','css', '/docs/', 'index.html');
+        var evidence = getEvidence('kss','less', '/docs/', 'section-1.html');
 
         test.expect(1);
         test.equal(evidence.actual, evidence.expected, evidence.description);
