@@ -19,6 +19,11 @@
 
 </head>
 <body><div id="kss-wrapper">
+
+    {{#each includes.css}}
+      <link rel="stylesheet" href="{{this.url}}">
+    {{/each}}
+
   <div id="kss-nav">
     <header id="kss-header">
       <hgroup><h1>kss-node Styleguide</h1></hgroup>
@@ -94,6 +99,11 @@
   <!-- SCRIPTS -->
   <script src="public/kss.js"></script>
   <script src="public/prettify.js"></script>
+  
+    {{#each includes.js}}
+      <script src="{{this.url}}"></script>    
+    {{/each}}
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>
     $(document).ready(function(){

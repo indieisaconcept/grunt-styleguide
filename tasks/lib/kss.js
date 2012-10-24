@@ -27,15 +27,21 @@ module.exports = {
                 template = styleguide.template,
                 kssTemplate = base + '/lib/template',
                 defaultTemplate = path.resolve(__dirname + '../../../templates/kss'),
-                missingTemplate = template.src ? false : !grunt.file.exists(defaultTemplate),
+                missingTemplate = template.src && grunt.file.exists(defaultTemplate) ? false : !grunt.file.exists(defaultTemplate),
 
                 argv = {},
                 msg = [];
 
             // TEMPLATE SYNC - COPY KSS TEMPLATE TO STYLEGUIDE ROOT
             if (missingTemplate) {
+
                 grunt.file.mkdir(defaultTemplate);
                 wrench.copyDirSyncRecursive(base + '/lib/template', defaultTemplate);
+
+                grunt.log.write('- Default KSS template in use ' + grunt.util.linefeed);
+                grunt.log.write('- ' + defaultTemplate + grunt.util.linefeed);
+                grunt.log.write('- Copy this to your project and update your gruntfile config should you wish to customise.' + grunt.util.linefeed + grunt.util.linefeed);
+
             }
 
             // set preprocessor options
@@ -46,12 +52,7 @@ module.exports = {
             options.templateDirectory = template.src.length !== 0 && template.src || defaultTemplate;
             options.sourceDirectory = files.base;
             options.destinationDirectory = files.dest;
-
-            if (options.templateDirectory === defaultTemplate) {
-                grunt.log.write('- Default KSS template in use ' + grunt.util.linefeed);
-                grunt.log.write('- ' + defaultTemplate + grunt.util.linefeed);
-                grunt.log.write('- Copy this to your project and update your gruntfile config should you wish to customise.' + grunt.util.linefeed + grunt.util.linefeed);
-            }
+            options.includes = template.include;
 
             // if we dont have a template generate one
             // and then let the user know

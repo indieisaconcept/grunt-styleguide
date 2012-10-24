@@ -42,6 +42,33 @@ module.exports = function(grunt) {
 
             get: {
 
+                paths: function (/* Array, Object */ collection, /* String */ base) {
+
+                    var resources = {};
+
+                    if (_.isObject(collection) && !_.isArray(collection)) {
+                        return collection;
+                    }
+
+                    collection.forEach(function (/* String */ item) {
+
+                        var extension = path.extname(item).replace('.', ''),
+                            location = path.relative(base, item);
+
+                        location = location + '?v=' + fs.statSync(item).mtime.getTime();
+
+                        resources[extension] = resources[extension] || [];
+                        resources[extension].push({
+                            url: location,
+                            file: item
+                        });
+
+                    });
+
+                    return resources;
+
+                },
+
                 // framework
                 framework: function (/* String */ name) {
 
@@ -110,9 +137,15 @@ module.exports = function(grunt) {
         grunt.log.write(grunt.util.linefeed);
 
         var styleguide = this.options && this.options() || helpers.options(this), // TODO: ditch this when grunt v0.4 is released
+            async = grunt.util.async,
             done = this.async(),
             generator,
-            framework;
+            framework,
+            files;
+
+        // TODO: ditch this when grunt v0.4 is released
+        this.files = this.files || helpers.normalizeMultiTaskFiles(this.data, this.target);
+        files = this.files;
 
         framework = styleguide.framework || {
             name: 'styledocco'
@@ -121,70 +154,91 @@ module.exports = function(grunt) {
         // initialize the framework passed
         generator = grunt.util._.isFunction(framework) ? framework : plugin.util.get.framework(framework.name);
 
-        // rationalize templates object and add backwards
-        // compatibility for options.include
+        async.series({
 
-        styleguide.template = styleguide.template || {};
-        styleguide.template.include = styleguide.template.include || styleguide.include || [];
+            template: function (callback) {
 
-        // expand files for includes and template sources
-        ['src', 'include'].forEach(function (/* String */ key) {
+                var resources = {};
 
-            var pathExists = false,
-                filePath = styleguide.template[key];
+                // rationalize templates object and add backwards
+                // compatibility for options.include
 
-            if (filePath) {
-                pathExists = grunt.file.exists(filePath);
-                styleguide.template[key] = pathExists ? filePath : grunt.file.expandFiles(filePath);
-            } else {
-                styleguide.template[key] = undefined;
+                styleguide.template = styleguide.template || {};
+                styleguide.template.include = styleguide.template.include || styleguide.include || [];
+
+                // expand files for includes and template sources
+                ['src', 'include'].forEach(function (/* String */ key) {
+
+                    var pathExists = false,
+                        filePath = styleguide.template[key];
+
+                    if (filePath) {
+                        pathExists = grunt.file.exists(filePath);
+                        styleguide.template[key] = pathExists ? filePath : grunt.file.expandFiles(filePath);
+                    } else {
+                        styleguide.template[key] = undefined;
+                    }
+
+                });
+
+                callback();
+
+            },
+
+            styleguide: function (callback) {
+
+                var template = styleguide.template;
+
+                // rationalized framework options
+                styleguide.options = framework.options || {};
+
+                grunt.verbose.writeflags(styleguide, 'options');
+
+                async.forEachSeries(files, function(file, next) {
+
+                    var files = grunt.file.expandFiles(file.src);
+
+                    // rationalize file object
+                    styleguide.files = {
+
+                        file: file,
+                        src: files.length > 0 && files || grunt.file.exists(file.src) && file.src,
+                        dest: file.dest,
+                        base: helpers.findBasePath(files)
+
+                    };
+
+                    // make include paths relative
+                    template.include = plugin.util.get.paths(template.include, file.dest);
+
+                    // identify the preporcess to use
+                    styleguide.preprocessor = plugin.util.get.preprocessor(files);
+
+                    if(grunt.util._.isEmpty(styleguide.files.src)) {
+                        grunt.fail.warn('Unable to generate styleguide; no valid source files were found.');
+                    }
+
+                    generator(styleguide, function(error) {
+
+                        var msg = 'DEST: ' + styleguide.files.dest + '/index.html';
+
+                        if(!error) {
+                            grunt.log.ok(msg);
+                            next();
+                        } else {
+                            grunt.log.error(error);
+                            grunt.fail.warn('Styleguide generation failed');
+                        }
+
+                    });
+
+                }, function() {
+                    done();
+                });
+
             }
-        });
 
-        // rationalized framework options
-        styleguide.options = framework.options || {};
-
-        // TODO: ditch this when grunt v0.4 is released
-        this.files = this.files || helpers.normalizeMultiTaskFiles(this.data, this.target);
-
-        grunt.verbose.writeflags(styleguide, 'options');
-
-        grunt.util.async.forEachSeries(this.files, function(file, next) {
-
-            var files = grunt.file.expandFiles(file.src);
-
-            // rationalize file object
-            styleguide.files = {
-
-                file: file,
-                src: files.length > 0 && files || grunt.file.exists(file.src) && file.src,
-                dest: file.dest,
-                base: helpers.findBasePath(files)
-
-            };
-
-            // identify the preporcess to use
-            styleguide.preprocessor = plugin.util.get.preprocessor(files);
-
-            if(grunt.util._.isEmpty(styleguide.files.src)) {
-                grunt.fail.warn('Unable to generate styleguide; no valid source files were found.');
-            }
-
-            generator(styleguide, function(error) {
-
-                var msg = 'DEST: ' + styleguide.files.dest + '/index.html';
-
-                if(!error) {
-                    grunt.log.ok(msg);
-                    next();
-                } else {
-                    grunt.log.error(error);
-                    grunt.fail.warn('Styleguide generation failed');
-                }
-
-            });
-
-        }, function() {
+        }, function () {
             done();
         });
 
