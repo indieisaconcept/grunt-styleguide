@@ -31,7 +31,11 @@
   "devDependencies": {
     "grunt-contrib-nodeunit": "~0.1.0",
     "grunt-contrib-clean": "~0.3.1",
-    "grunt": "~0.3.17"
+    "grunt": "~0.3.17",
+    "grunt-lib-contrib": "~0.3.0",
+    "styledocco": "https://nodeload.github.com/indieisaconcept/styledocco/tarball/10c0262d53",
+    "kss": "https://nodeload.github.com/indieisaconcept/kss-node/tarball/599f878d4f",
+    "wrench": "~1.3.9"
   },
   "keywords": [
     "gruntplugin",
@@ -41,11 +45,5 @@
     "less",
     "preprocessor",
     "styleguide"
-  ],
-  "dependencies": {
-    "grunt-lib-contrib": "~0.3.0",
-    "styledocco": "https://nodeload.github.com/indieisaconcept/styledocco/tarball/10c0262d53",
-    "kss": "https://nodeload.github.com/indieisaconcept/kss-node/tarball/599f878d4f",
-    "wrench": "~1.3.9"
-  }
+  ]
 }
