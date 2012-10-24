@@ -31,8 +31,7 @@
   "devDependencies": {
     "grunt-contrib-nodeunit": "~0.1.0",
     "grunt-contrib-clean": "~0.3.1",
-    "grunt": "~0.3.17",
-    "cheerio": "~0.10.1"
+    "grunt": "~0.3.17"
   },
   "keywords": [
     "gruntplugin",

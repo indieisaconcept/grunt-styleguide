@@ -2,8 +2,6 @@
 
 var grunt = require('grunt'),
 
-    cheerio = require('cheerio'),
-
     getEvidence = function (/* String */ framework, /* String */ preprocessor, /* String */ base, /* String */ file) {
 
       // setup default options for use by tests
@@ -17,8 +15,8 @@ var grunt = require('grunt'),
         // grunt.file.findup: seems to be flakey in < 4.0
 
         evidence = {
-          actual: cheerio.load(grunt.file.read(grunt.file.expand('tmp/' + path)[0])).html(),
-          expected: cheerio.load(grunt.file.read(grunt.file.expand('test/expected/' + path)[0])).html(),
+          actual: grunt.file.read(grunt.file.expand('tmp/' + path)[0]).replace(/(\r\n|\n|\r)/gm,'').replace(/\s+/g,''),
+          expected: grunt.file.read(grunt.file.expand('test/expected/' + path)[0]).replace(/(\r\n|\n|\r)/gm,'').replace(/\s+/g,''),
           description: 'should generate a ${preprocessor} styleguide.'.replace('${preprocessor}', preprocessor)
         };
 
