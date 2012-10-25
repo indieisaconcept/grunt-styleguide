@@ -62,7 +62,7 @@ exports.styleguide = {
 
     kss: {
 
-      css: function(test) {
+      less: function(test) {
 
         var evidence = getEvidence('kss','less', '/docs/', 'section-1.html');
 
