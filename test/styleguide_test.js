@@ -15,8 +15,8 @@ var grunt = require('grunt'),
         // grunt.file.findup: seems to be flakey in < 4.0
 
         evidence = {
-          actual: grunt.file.read(grunt.file.expand('tmp/' + path)[0]).replace(/(\r\n|\n|\r)/gm,'').replace(/\s+/g,''),
-          expected: grunt.file.read(grunt.file.expand('test/expected/' + path)[0]).replace(/(\r\n|\n|\r)/gm,'').replace(/\s+/g,''),
+          actual: (grunt.file.read(grunt.file.expand('tmp/' + path)[0]).replace(/(\r\n|\n|\r)/gm,'').replace(/\s+/g,'')).length,
+          expected: (grunt.file.read(grunt.file.expand('test/expected/' + path)[0]).replace(/(\r\n|\n|\r)/gm,'').replace(/\s+/g,'')).length,
           description: 'should generate a ${preprocessor} styleguide.'.replace('${preprocessor}', preprocessor)
         };
 
