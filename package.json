@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "grunt-lib-contrib": "~0.3.0",
-    "kss": "https://nodeload.github.com/indieisaconcept/kss-node/tarball/599f878d4f",
+    "kss": "http://github.com/indieisaconcept/kss-node/archive/599f878d4f.tar.gz",
     "wrench": "~1.3.9",
     "styledocco": "~0.6.1",
     "less": "~1.3.1"
