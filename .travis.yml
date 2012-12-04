@@ -1,4 +1,6 @@
 language: node_js
 node_js:
   - 0.8
-before_install: 'gem update --system && gem install sass && gem install compass'
+before_install: 
+  - npm install -g grunt-cli
+  - gem update --system && gem install sass && gem install compass
