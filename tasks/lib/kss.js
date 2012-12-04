@@ -46,11 +46,11 @@ module.exports = {
             // set preprocessor options
             if (/(css|less)/.test(styleguide.preprocessor)) {
 
-                if (!grunt.file.exists(files.file.src)) {
+                if (!grunt.file.exists(files.file.src[0])) {
                     grunt.fail.warn('Specify an absolute path to continue');
                 }
 
-                argv[styleguide.preprocessor] = files.file.src;
+                argv[styleguide.preprocessor] = files.file.src[0];
 
             }
 

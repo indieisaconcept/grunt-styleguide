@@ -21,10 +21,6 @@ module.exports = function(grunt) {
         plugin = {},
         _;
 
-    // TODO: ditch this when grunt v0.4 is released
-    grunt.file.exists = grunt.file.exists || fs.existsSync || path.existsSync;
-    grunt.util = grunt.util || grunt.utils;
-
     _ = grunt.util._,
 
     // ==================================
@@ -136,16 +132,12 @@ module.exports = function(grunt) {
 
         grunt.log.write(grunt.util.linefeed);
 
-        var styleguide = this.options && this.options() || helpers.options(this), // TODO: ditch this when grunt v0.4 is released
+        var styleguide = this.options(),
             async = grunt.util.async,
             done = this.async(),
             generator,
             framework,
-            files;
-
-        // TODO: ditch this when grunt v0.4 is released
-        this.files = this.files || helpers.normalizeMultiTaskFiles(this.data, this.target);
-        files = this.files;
+            files = this.file;
 
         framework = styleguide.framework || {
             name: 'styledocco'
@@ -194,9 +186,9 @@ module.exports = function(grunt) {
 
                 grunt.verbose.writeflags(styleguide, 'options');
 
-                async.forEachSeries(files, function(file, next) {
+                async.forEachSeries([files], function(file, next) {
 
-                    var files = grunt.file.expandFiles(file.src);
+                    var files = file.src;
 
                     // rationalize file object
                     styleguide.files = {
@@ -233,7 +225,7 @@ module.exports = function(grunt) {
                     });
 
                 }, function() {
-                    done();
+                    callback();
                 });
 
             }

@@ -31,7 +31,7 @@
   "devDependencies": {
     "grunt-contrib-nodeunit": "~0.1.0",
     "grunt-contrib-clean": "~0.3.1",
-    "grunt": "~0.3.17"
+    "grunt": "http://github.com/gruntjs/grunt/archive/1f77fef26c.tar.gz"
   },
   "dependencies": {
     "grunt-lib-contrib": "~0.3.0",
