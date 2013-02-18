@@ -23,15 +23,19 @@
   ],
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.8.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-nodeunit": "~0.1.0",
-    "grunt-contrib-clean": "~0.3.1",
-    "grunt": "0.4.0a"
+    "grunt": "~0.4.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-nodeunit": "~0.1.2"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
   },
   "dependencies": {
     "grunt-lib-contrib": "~0.3.0",

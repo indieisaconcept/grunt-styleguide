@@ -137,7 +137,7 @@ module.exports = function(grunt) {
             done = this.async(),
             generator,
             framework,
-            files = this.file;
+            files = this.files;
 
         framework = styleguide.framework || {
             name: 'styledocco'
@@ -166,7 +166,7 @@ module.exports = function(grunt) {
 
                     if (filePath) {
                         pathExists = grunt.file.exists(filePath);
-                        styleguide.template[key] = pathExists ? filePath : grunt.file.expandFiles(filePath);
+                        styleguide.template[key] = pathExists ? filePath : grunt.file.expand(filePath);
                     } else {
                         styleguide.template[key] = undefined;
                     }
@@ -186,7 +186,7 @@ module.exports = function(grunt) {
 
                 grunt.verbose.writeflags(styleguide, 'options');
 
-                async.forEachSeries([files], function(file, next) {
+                async.forEachSeries(files, function(file, next) {
 
                     var files = file.src;
 
@@ -194,7 +194,7 @@ module.exports = function(grunt) {
                     styleguide.files = {
 
                         file: file,
-                        src: files.length > 0 && files || grunt.file.exists(file.src) && file.src,
+                        src: files.length > 0 && files || grunt.file.exists(file.orig.src) && file.orig.src,
                         dest: file.dest,
                         base: helpers.findBasePath(files)
 
@@ -206,7 +206,7 @@ module.exports = function(grunt) {
                     // identify the preporcess to use
                     styleguide.preprocessor = plugin.util.get.preprocessor(files);
 
-                    if(grunt.util._.isEmpty(styleguide.files.src)) {
+                    if(_.isEmpty(styleguide.files.src)) {
                         grunt.fail.warn('Unable to generate styleguide; no valid source files were found.');
                     }
 
