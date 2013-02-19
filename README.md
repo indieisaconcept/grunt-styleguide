@@ -242,9 +242,13 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-### 0.3.0
+### 0.2.2
 
 + Grunt 0.4.0 support (~0.3.0 no longer supported)
+
+### 0.2.1
+
++ Minor bug fix
 
 ### 0.2.0
 
