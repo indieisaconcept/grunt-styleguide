@@ -7,16 +7,34 @@
  * Licensed under the MIT license.
  */
 
+var kss = require('kss'),
+    path = require('path'),
+    base = path.dirname(require.resolve('kss')),
+    wrench = require('wrench');
+
 module.exports = {
 
     init: function (grunt) {
 
         'use strict';
 
-        var kss = require('kss'),
-            path = require('path'),
-            base = path.dirname(require.resolve('kss')),
-            wrench = require('wrench');
+        var helper = require('grunt-lib-contrib').init(grunt);
+
+        // Based on handy compile function in
+        // https://github.com/gruntjs/grunt-contrib-compass/blob/master/tasks/compass.js#
+        function compile(args, cb) {
+
+            var child = grunt.util.spawn({
+                cmd: args.shift(),
+                args: args
+            }, function (error, result, code) {
+                cb(error);
+            });
+
+            child.stdout.pipe(process.stdout);
+            child.stderr.pipe(process.stderr);
+
+        }        
 
         return function (styleguide, done) {
 
@@ -29,45 +47,36 @@ module.exports = {
                 defaultTemplate = path.resolve(__dirname + '../../../templates/kss'),
                 missingTemplate = template.src && grunt.file.exists(defaultTemplate) ? false : !grunt.file.exists(defaultTemplate),
 
-                argv = {};
+                args = [base + '/bin/kss-node'];            
 
             // TEMPLATE SYNC - COPY KSS TEMPLATE TO STYLEGUIDE ROOT
             if (missingTemplate) {
-
                 grunt.file.mkdir(defaultTemplate);
                 wrench.copyDirSyncRecursive(kssTemplate, defaultTemplate);
 
                 grunt.log.write('- Default KSS template in use ' + grunt.util.linefeed);
                 grunt.log.write('- ' + defaultTemplate + grunt.util.linefeed);
-                grunt.log.write('- Copy this to your project and update your gruntfile config should you wish to customise.' + grunt.util.linefeed + grunt.util.linefeed);
+                grunt.log.write('- Copy this to your project and update your gruntfile config should you wish to customise.' + grunt.util.linefeed);
 
             }
 
+            options.template = (template.src.length !== 0 && template.src || defaultTemplate);
+
             // set preprocessor options
-            if (/(css|less)/.test(styleguide.preprocessor)) {
+            if (/(style|less|stylus|sass|css)/.test(styleguide.preprocessor)) {
 
                 if (!grunt.file.exists(files.file.src[0])) {
                     grunt.fail.warn('Specify an absolute path to continue');
                 }
 
-                argv[styleguide.preprocessor] = files.file.src[0];
+                options[styleguide.preprocessor] = files.file.src[0];
 
             }
 
-            options.templateDirectory = template.src.length !== 0 && template.src || defaultTemplate;
-            options.sourceDirectory = files.base;
-            options.destinationDirectory = files.dest;
             options.includes = template.include;
 
-            // if we dont have a template generate one
-            // and then let the user know
-
             grunt.file.mkdir(files.dest);
-            kss.generate(options, argv, function () {
-                grunt.log.write(grunt.util.linefeed);
-                done();
-            });
-
+            compile(args.concat([files.base, files.dest], helper.optsToArgs(options)), done);
 
         };
 

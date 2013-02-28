@@ -61,8 +61,8 @@ module.exports = function(grunt) {
                     name: 'Style Guide',
 
                     template: {
-                        src: 'kss',
-                        include: ['templates/kss/public/prettify.js']
+                        src: 'kss'
+                        // include: ['templates/kss/public/prettify.js']
                     }
 
                 },

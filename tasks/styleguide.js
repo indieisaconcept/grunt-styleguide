@@ -48,16 +48,20 @@ module.exports = function(grunt) {
 
                     collection.forEach(function (/* String */ item) {
 
-                        var extension = path.extname(item).replace('.', ''),
-                            location = path.relative(base, item);
+                        if (grunt.file.exists(item)) {
 
-                        location = location + '?v=' + fs.statSync(item).mtime.getTime();
+                            var extension = path.extname(item).replace('.', ''),
+                                location = path.relative(base, item);
 
-                        resources[extension] = resources[extension] || [];
-                        resources[extension].push({
-                            url: location,
-                            path: item
-                        });
+                            location = location + '?v=' + fs.statSync(item).mtime.getTime();
+
+                            resources[extension] = resources[extension] || [];
+                            resources[extension].push({
+                                url: location,
+                                path: item
+                            });
+
+                        }
 
                     });
 
@@ -167,6 +171,7 @@ module.exports = function(grunt) {
                     if (filePath) {
                         pathExists = grunt.file.exists(filePath);
                         styleguide.template[key] = pathExists ? filePath : grunt.file.expand(filePath);
+
                     } else {
                         styleguide.template[key] = undefined;
                     }
