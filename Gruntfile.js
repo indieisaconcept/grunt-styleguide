@@ -31,6 +31,20 @@ module.exports = function(grunt) {
         // Configuration to be run (and then tested).
         styleguide: {
 
+            release: {
+
+                options: {
+                    bump: true,
+                    add: false,
+                    commit: false,
+                    tag: false,
+                    push: false,
+                    pushTags: false,
+                    npm: false
+                }
+
+            },  
+
             styledocco: {
 
                 options: {
@@ -86,6 +100,7 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
 
     // These plugins provide necessary tasks.
+    grunt.loadNpmTasks('grunt-release'); 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
