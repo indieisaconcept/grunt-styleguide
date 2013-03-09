@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
     var fs = require('fs'),
         path = require('path'),
-        helpers = require('grunt-lib-contrib').init(grunt),
+        helper = require('grunt-lib-contrib').init(grunt),
         plugin = {},
         _;
 
@@ -35,6 +35,26 @@ module.exports = function(grunt) {
         },
 
         util: {
+
+            // Based on handy compile function in
+            // https://github.com/gruntjs/grunt-contrib-compass/blob/master/tasks/compass.js#
+
+            compile: function(args, options, cb) {
+
+                args = !_.isArray(args) ? [args] : args; 
+                args = options && args.concat(helper.optsToArgs(options)) || args;
+
+                var child = grunt.util.spawn({
+                    cmd: args.shift(),
+                    args: args
+                }, function (error, result, code) {
+                    cb(error);
+                });
+
+                child.stdout.pipe(process.stdout);
+                child.stderr.pipe(process.stderr);
+
+            },
 
             get: {
 
@@ -76,10 +96,10 @@ module.exports = function(grunt) {
 
                     try {
                         framework = require('./lib/' + name);
-                        framework = framework.init(grunt);
+                        framework = framework.init(grunt);                        
                     } catch(err) {
-                        grunt.fail.warn('Unsupported styleguide framework, see https://github.com/indieisaconcept/grunt-styleguide');
-                    }
+                        grunt.fail.warn(err + '\n' + 'See https://github.com/indieisaconcept/grunt-styleguide');
+                    }                 
 
                     return framework;
 
@@ -201,21 +221,21 @@ module.exports = function(grunt) {
                         file: file,
                         src: files.length > 0 && files || grunt.file.exists(file.orig.src) && file.orig.src,
                         dest: file.dest,
-                        base: helpers.findBasePath(files)
+                        base: helper.findBasePath(files)
 
                     };
 
                     // make include paths relative
                     template.include = plugin.util.get.paths(template.include, file.dest);
 
-                    // identify the preporcess to use
+                    // identify the preprocessor to use
                     styleguide.preprocessor = plugin.util.get.preprocessor(files);
 
                     if(_.isEmpty(styleguide.files.src)) {
                         grunt.fail.warn('Unable to generate styleguide; no valid source files were found.');
                     }
 
-                    generator(styleguide, function(error) {
+                    generator(styleguide, plugin.util.compile, function(error) {
 
                         var msg = 'DEST: ' + styleguide.files.dest + '/index.html';
 

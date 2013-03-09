@@ -18,25 +18,7 @@ module.exports = {
 
         'use strict';
 
-        var helper = require('grunt-lib-contrib').init(grunt);
-
-        // Based on handy compile function in
-        // https://github.com/gruntjs/grunt-contrib-compass/blob/master/tasks/compass.js#
-        function compile(args, cb) {
-
-            var child = grunt.util.spawn({
-                cmd: args.shift(),
-                args: args
-            }, function (error, result, code) {
-                cb(error);
-            });
-
-            child.stdout.pipe(process.stdout);
-            child.stderr.pipe(process.stderr);
-
-        }        
-
-        return function (styleguide, done) {
+        return function (styleguide, compile, done) {
 
             var files = styleguide.files,
                 options = styleguide.options,
@@ -76,7 +58,7 @@ module.exports = {
             options.includes = template.include;
 
             grunt.file.mkdir(files.dest);
-            compile(args.concat([files.base, files.dest], helper.optsToArgs(options)), done);
+            compile(args.concat([files.base, files.dest]), options, done);
 
         };
 

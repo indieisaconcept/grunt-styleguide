@@ -8,6 +8,9 @@
 
 'use strict';
 
+var path = require('path'),
+    base = path.dirname(path.dirname(require.resolve('styledocco')));
+
 module.exports = {
 
     init: function (grunt) {
@@ -16,12 +19,13 @@ module.exports = {
 
             // proecessor specific arguemnts
             processors = {
-                'sass': 'sass --compass'
+                'sass': 'sass --compass',
+                'less': base + '/.bin/lessc'
             },
 
             _ = grunt.util._;
 
-        return function (styleguide, callback) {
+        return function (styleguide, compile, callback) {
 
             var files = styleguide.files,
                 options = styleguide.framework && styleguide.framework.options || {},
