@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 
             compile: function(args, options, cb) {
 
-                args = !_.isArray(args) ? [args] : args; 
+                args = !_.isArray(args) ? [args] : args;
                 args = options && args.concat(helper.optsToArgs(options)) || args;
 
                 var child = grunt.util.spawn({
@@ -96,10 +96,10 @@ module.exports = function(grunt) {
 
                     try {
                         framework = require('./lib/' + name);
-                        framework = framework.init(grunt);                        
+                        framework = framework.init(grunt);
                     } catch(err) {
                         grunt.fail.warn(err + '\n' + 'See https://github.com/indieisaconcept/grunt-styleguide');
-                    }                 
+                    }
 
                     return framework;
 
@@ -189,7 +189,7 @@ module.exports = function(grunt) {
                         filePath = styleguide.template[key];
 
                     if (filePath) {
-                        pathExists = grunt.file.exists(filePath);
+                        pathExists = (_.isString(filePath) || _.isArray(filePath) && _.size(filePath) !== 0) && grunt.file.exists(filePath);
                         styleguide.template[key] = pathExists ? filePath : grunt.file.expand(filePath);
 
                     } else {
