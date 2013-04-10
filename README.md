@@ -242,6 +242,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 0.2.5
+
+- Node.js ~0.10.0 compatibility
+
 ### 0.2.4
 
 - Pass local less path to styledocco

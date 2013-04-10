@@ -1,7 +1,7 @@
 {
   "name": "grunt-styleguide",
   "description": "Universal CSS styleguide generator for grunt",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "homepage": "https://github.com/indieisaconcept/grunt-styleguide",
   "author": {
     "name": "Jonathan Barnett",
