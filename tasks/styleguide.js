@@ -189,11 +189,15 @@ module.exports = function(grunt) {
                         filePath = styleguide.template[key];
 
                     if (filePath) {
-                        pathExists = (_.isString(filePath) || _.isArray(filePath) && _.size(filePath) !== 0) && grunt.file.exists(filePath);
-                        styleguide.template[key] = pathExists ? filePath : grunt.file.expand(filePath);
+
+                        filePath = (!_.isArray(filePath) ? [filePath] : filePath).filter(function (/* String */ file) {
+                            return grunt.file.exists(file);
+                        });
+
+                        styleguide.template[key] = _.isEmpty(filePath) ? [] : grunt.file.expand(filePath);
 
                     } else {
-                        styleguide.template[key] = undefined;
+                        styleguide.template[key] = [];
                     }
 
                 });

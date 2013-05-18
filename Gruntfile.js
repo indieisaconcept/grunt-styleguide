@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                     npm: false
                 }
 
-            },  
+            },
 
             styledocco: {
 
@@ -53,7 +53,11 @@ module.exports = function(grunt) {
                         name: 'styledocco'
                     },
 
-                    name: 'Style Guide'
+                    name: 'Style Guide',
+
+                    template: {
+                        include: ['templates/kss/public/prettify.js']
+                    }
 
                 },
 
@@ -76,7 +80,7 @@ module.exports = function(grunt) {
 
                     template: {
                         src: 'kss'
-                        // include: ['templates/kss/public/prettify.js']
+                        // include: ['templates/kss/public/prettify.js'] - includes deprecated
                     }
 
                 },
@@ -100,7 +104,7 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-release'); 
+    grunt.loadNpmTasks('grunt-release');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
