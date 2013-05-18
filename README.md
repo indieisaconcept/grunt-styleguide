@@ -242,6 +242,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 0.2.6
+
+- Minor code tweaks to resolve some user issues 
+
 ### 0.2.5
 
 - Node.js ~0.10.0 compatibility
