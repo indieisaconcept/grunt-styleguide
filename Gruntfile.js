@@ -28,22 +28,22 @@ module.exports = function(grunt) {
             test: ['tmp', '.sass-cache']
         },
 
+        release: {
+
+            options: {
+                bump: true,
+                add: false,
+                commit: false,
+                tag: false,
+                push: false,
+                pushTags: false,
+                npm: false
+            }
+
+        },
+
         // Configuration to be run (and then tested).
         styleguide: {
-
-            release: {
-
-                options: {
-                    bump: true,
-                    add: false,
-                    commit: false,
-                    tag: false,
-                    push: false,
-                    pushTags: false,
-                    npm: false
-                }
-
-            },
 
             styledocco: {
 
