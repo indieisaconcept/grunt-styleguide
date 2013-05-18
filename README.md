@@ -23,7 +23,7 @@
   </tr><tr>
     <td><a href="https://github.com/hughsk/kss-node">kss-node</a></td>
     <td>Less</td>
-    <td>Template can be configured to include files post compile and custom templates can be used</td>    
+    <td>Custom templates can be used</td>    
   </tr>
 </table>
 
