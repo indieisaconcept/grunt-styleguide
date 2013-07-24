@@ -44,10 +44,7 @@ module.exports = function(grunt) {
                 args = !_.isArray(args) ? [args] : args;
                 args = options && args.concat(helper.optsToArgs(options)) || args;
 
-                var child = grunt.util.spawn({
-                    cmd: args.shift(),
-                    args: args
-                }, function (error, result, code) {
+                var child = grunt.util.spawn({ cmd:"node", args:args }, function (error, result, code) {
                     cb(error);
                 });
 
