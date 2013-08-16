@@ -222,7 +222,7 @@ module.exports = function(grunt) {
                         file: file,
                         src: files.length > 0 && files || grunt.file.exists(file.orig.src) && file.orig.src,
                         dest: file.dest,
-                        base: helper.findBasePath(files)
+                        base: helper.findBasePath(files) || './'
 
                     };
 
