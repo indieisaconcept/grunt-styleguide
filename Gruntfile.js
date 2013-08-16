@@ -62,8 +62,8 @@ module.exports = function(grunt) {
                 },
 
                 files: {
-                    'tmp/styledocco/docs/bootstrap/less': 'test/fixtures/styledocco/docs/bootstrap/**/*.less',
-                    'tmp/styledocco/docs/bootstrap/sass': 'test/fixtures/styledocco/docs/bootstrap/**/*.{scss,sass}'
+                    'tmp/styledocco/docs/bootstrap/less': 'test/fixtures/bootstrap/**/*.less',
+                    'tmp/styledocco/docs/bootstrap/sass': 'test/fixtures/bootstrap/**/*.{scss,sass}'
                 }
 
             },
@@ -79,14 +79,13 @@ module.exports = function(grunt) {
                     name: 'Style Guide',
 
                     template: {
-                        src: 'kss'
-                        // include: ['templates/kss/public/prettify.js'] - includes deprecated
+                        src: {}
                     }
 
                 },
 
                 files: {
-                    'tmp/kss/docs/less': 'test/fixtures/generic/docs/styles.less'
+                    'tmp/kss/docs/less': 'test/fixtures/bootstrap/less/main.less'
                 }
 
             }

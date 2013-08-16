@@ -31,7 +31,8 @@ module.exports = function(grunt) {
 
         preprocessors: {
             'sass': 'scss sass',
-            'less': 'less'
+            'less': 'less',
+            'stylus': 'styl'
         },
 
         util: {
@@ -188,7 +189,7 @@ module.exports = function(grunt) {
                     if (filePath) {
 
                         filePath = (!_.isArray(filePath) ? [filePath] : filePath).filter(function (/* String */ file) {
-                            return grunt.file.exists(file);
+                            return _.isString(file) && grunt.file.exists(file);
                         });
 
                         styleguide.template[key] = _.isEmpty(filePath) ? [] : grunt.file.expand(filePath);
