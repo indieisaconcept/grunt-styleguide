@@ -62,8 +62,8 @@ module.exports = function(grunt) {
                 },
 
                 files: {
-                    'tmp/styledocco/docs/bootstrap/less': 'test/fixtures/bootstrap/**/*.less',
-                    'tmp/styledocco/docs/bootstrap/sass': 'test/fixtures/bootstrap/**/*.{scss,sass}'
+                    'tmp/styledocco/docs/bootstrap/less': 'test/fixtures/styledocco/bootstrap/**/*.less',
+                    'tmp/styledocco/docs/bootstrap/sass': 'test/fixtures/styledocco/bootstrap/**/*.{scss,sass}'
                 }
 
             },
