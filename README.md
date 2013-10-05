@@ -242,6 +242,11 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 0.2.8
+
+- Updated styledocco dependencies
+- Added Stylus
+
 ### 0.2.7
 
 - Cumulative fixes (Issues #18, #14, #11) [ sorry for the delay ]
