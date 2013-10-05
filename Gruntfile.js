@@ -28,20 +28,6 @@ module.exports = function(grunt) {
             test: ['tmp', '.sass-cache']
         },
 
-        release: {
-
-            options: {
-                bump: true,
-                add: false,
-                commit: false,
-                tag: false,
-                push: false,
-                pushTags: false,
-                npm: false
-            }
-
-        },
-
         // Configuration to be run (and then tested).
         styleguide: {
 
@@ -104,7 +90,6 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-release');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
