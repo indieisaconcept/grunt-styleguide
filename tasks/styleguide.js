@@ -28,7 +28,8 @@ module.exports = function(grunt) {
 
         preprocessors: {
             'sass': 'scss sass',
-            'less': 'less'
+            'less': 'less',
+            'stylus': 'styl'
         },
 
         util: {
