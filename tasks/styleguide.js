@@ -1,4 +1,3 @@
-/*jshint node:true*/
 /*
  * Styleguide
  * https://github.com/indieisaconcept/grunt-styleguide
@@ -7,9 +6,9 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
-
 module.exports = function(grunt) {
+
+    'use strict';
 
     // ==================================
     // DEFAULTS
@@ -19,9 +18,7 @@ module.exports = function(grunt) {
         path = require('path'),
         helper = require('grunt-lib-contrib').init(grunt),
         plugin = {},
-        _;
-
-    _ = grunt.util._,
+        _ = grunt.util._;
 
     // ==================================
     // PLUGIN DEFAULTS
@@ -45,8 +42,8 @@ module.exports = function(grunt) {
                 args = options && args.concat(helper.optsToArgs(options)) || args;
 
                 var child = grunt.util.spawn({
-                    cmd: args.shift(),
-                    args: args
+                    cmd:"node",
+                    args:args
                 }, function (error, result, code) {
                     cb(error);
                 });
@@ -191,7 +188,7 @@ module.exports = function(grunt) {
                     if (filePath) {
 
                         filePath = (!_.isArray(filePath) ? [filePath] : filePath).filter(function (/* String */ file) {
-                            return grunt.file.exists(file);
+                            return _.isString(file) && grunt.file.exists(file);
                         });
 
                         styleguide.template[key] = _.isEmpty(filePath) ? [] : grunt.file.expand(filePath);
@@ -225,7 +222,7 @@ module.exports = function(grunt) {
                         file: file,
                         src: files.length > 0 && files || grunt.file.exists(file.orig.src) && file.orig.src,
                         dest: file.dest,
-                        base: helper.findBasePath(files)
+                        base: helper.findBasePath(files) || './'
 
                     };
 
