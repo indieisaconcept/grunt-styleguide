@@ -20,7 +20,8 @@ module.exports = {
             // proecessor specific arguemnts
             processors = {
                 'sass': 'sass --compass',
-                'less': base + '/.bin/lessc'
+                'less': base + '/.bin/lessc',
+                'stylus': base + '/.bin/stylus'
             },
 
             _ = grunt.util._;
