@@ -15,15 +15,15 @@
   <tr>
     <th>Framework</th>
     <th>Preprocessor</th>
-	<th>Templates</th>   
+	<th>Templates</th>
   </tr><tr>
     <td><a href="http://jacobrask.github.com/styledocco/">styledocco</a></td>
     <td>Less, SASS</td>
-    <td>Default template provided by styledocco is used</td>    
+    <td>Default template provided by styledocco is used</td>
   </tr><tr>
     <td><a href="https://github.com/hughsk/kss-node">kss-node</a></td>
     <td>Less</td>
-    <td>Custom templates can be used</td>    
+    <td>Custom templates can be used</td>
   </tr>
 </table>
 
@@ -57,25 +57,25 @@ In your project's Gruntfile, add a section named `styleguide` to the data object
 grunt.initConfig({
 
   styleguide: {
-  
+
     options: {
       // global options
     },
-    
+
     your_target: {
-    	
+
     	options: {
     		// task options
     	},
-	
+
 	    files: {
-	        // files to process                
+	        // files to process
 	    }
-      
+
     }
-    
+
   }
-  
+
 })
 ```
 An example configuration can be view [here](https://gist.github.com/3932026)
@@ -91,32 +91,32 @@ By default **grunt-styleguide** will attempt to rationalize options for each of 
     <th>Key</th>
     <th>Type</th>
     <th>Default</th>
-	<th>Required</th>    
+	<th>Required</th>
     <th>Description</th>
   </tr><tr>
     <td>framework</td>
     <td>String, object, function (*)</td>
     <td>styledocco</td>
     <td>No</td>
-    <td>Details about the styleguide framework</td>    
+    <td>Details about the styleguide framework</td>
   </tr><tr>
     <td>name</td>
     <td>String</td>
-	<td>undefined</td>    
+	<td>undefined</td>
     <td>No</td>
-    <td>Title of the styleguide</td>    
+    <td>Title of the styleguide</td>
   </tr><tr>
     <td>template</td>
     <td>Object</td>
-	<td>Template bundled with framework</td>    
+	<td>Template bundled with framework</td>
     <td>No</td>
-    <td>Details of the templetes to use for rendering if supported</td>    
+    <td>Details of the templetes to use for rendering if supported</td>
   </tr><tr>
     <td>files</td>
     <td>Object, String, Array</td>
-    <td>undefined</td>    
+    <td>undefined</td>
     <td>Yes</td>
-    <td>Details of the templetes to use for rendering if supported</td>    
+    <td>Details of the templetes to use for rendering if supported</td>
   </tr>
 </table>
 
@@ -124,7 +124,7 @@ By default **grunt-styleguide** will attempt to rationalize options for each of 
 
 #### Framework Options
 
-Should you wish to pass additional options which are supported by a framework then these can be passed as an options as part of the framework object. 
+Should you wish to pass additional options which are supported by a framework then these can be passed as an options as part of the framework object.
 
 ```
 styleguide: {
@@ -132,7 +132,7 @@ styleguide: {
 	dist: {
 
 		options: {
-		
+
 			framework: {
 				name: 'framework_name',
 				options: {
@@ -140,13 +140,13 @@ styleguide: {
 					'someflag: true
 				}
 			}
-		
+
 		},
-		
+
 		files: {
 			'path/to/dest': 'path/to/source'
 		}
-	
+
 	}
 
 }
@@ -160,18 +160,18 @@ Depending upon the framework, it may be possible to also pass templates to use f
 styleguide: {
 
 	dist: {
-	
+
 		options: {
-		
+
 			template: {
 				src: 'path/to/templates',
 				include: ['path/of/resources/to/include']
 			}
-			
+
 			files: {
 				'path/to/dest': 'path/to/source'
 			}
-			
+
 		}
 
 	}
@@ -183,18 +183,18 @@ styleguide: {
   <tr>
     <th>Key</th>
     <th>Type</th>
-	<th>Required</th>    
+	<th>Required</th>
     <th>Description</th>
   </tr><tr>
     <td>src</td>
     <td>String</td>
     <td>No</td>
-    <td>Location of the template to use</td>    
+    <td>Location of the template to use</td>
   </tr><tr>
     <td>include</td>
     <td>String, Array</td>
     <td>No</td>
-    <td>Title of the styleguide</td>    
+    <td>Title of the styleguide</td>
   </tr>
 </table>
 
@@ -222,18 +222,18 @@ In this example a styleguide will be generated using the default generator, `sty
 grunt.initConfig({
 
   styleguide: {
-  
+
   	dist: {
-  	
+
 	    files: {
-	      'docs/core': 'stylesheets/sass/core/*.scss',    
+	      'docs/core': 'stylesheets/sass/core/*.scss',
 	      'docs/plugins': 'stylesheets/sass/plugins/*.scss',
-	    }  	
-  	
+	    }
+
   	}
- 
+
   }
-  
+
 });
 ```
 
@@ -242,9 +242,13 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 0.2.7
+
+- Cumulative fixes (Issues #18, #14, #11) [ sorry for the delay ]
+
 ### 0.2.6
 
-- Minor code tweaks to resolve some user issues 
+- Minor code tweaks to resolve some user issues
 
 ### 0.2.5
 
