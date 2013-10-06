@@ -9,24 +9,24 @@
 'use strict';
 
 var path = require('path'),
-    base = path.dirname(path.dirname(require.resolve('styledocco')));
+    styledocco = path.dirname(require.resolve('styledocco')),
+    depBase = path.dirname(styledocco);
 
 module.exports = {
 
     init: function (grunt) {
 
-        var styledocco = require('styledocco/cli'),
-
-            // proecessor specific arguemnts
-            processors = {
+        var processors = {
                 'sass': 'sass --compass',
-                'less': base + '/.bin/lessc',
-                'stylus': base + '/.bin/stylus'
+                'less': depBase + '/.bin/lessc',
+                'stylus': depBase + '/.bin/stylus'
             },
 
-            _ = grunt.util._;
+            _ = grunt.util._,
 
-        return function (styleguide, compile, callback) {
+            args = [styledocco + '/bin/styledocco'];
+
+        return function (styleguide, compile, done) {
 
             var files = styleguide.files,
                 options = styleguide.framework && styleguide.framework.options || {},
@@ -34,9 +34,7 @@ module.exports = {
 
             // default styledocco options
             options.name = styleguide.name;
-            options.in = files.src;
             options.out = files.dest;
-            options.basePath = files.base;
 
             options.include = _.chain(styleguide.template.include).map(function (/* Object */ item) {
                 return _.pluck(item, 'path');
@@ -47,22 +45,7 @@ module.exports = {
                 options.preprocessor = preprocessor;
             }
 
-            styledocco(options);
-
-            // [JB] HACKY
-            // styledocco doesn't support callbacks but always generates
-            // and index.html file upon completion so we can at least monitor for the
-            // creation of this.
-
-            (function isComplete() {
-
-                if (!grunt.file.exists(files.dest + '/index.html')) {
-                  setTimeout(isComplete, 0);
-                } else {
-                  callback();
-                }
-
-            }());
+            compile(args.concat([files.base]), options, done);
 
         };
 
