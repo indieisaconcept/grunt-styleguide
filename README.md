@@ -242,6 +242,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+### 0.2.10
+
+- KSS fix (#15)
+
 ### 0.2.9
 
 - Simplify styledocco plugin
