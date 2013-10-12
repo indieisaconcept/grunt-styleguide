@@ -3,7 +3,7 @@ node_js:
   - "0.8"
   - "0.10"
 before_install:
-  - apt-get install rpmbuild
+  - sudo apt-get install rpmbuild
   - gem update --system
   - gem install sass
   - gem install compass
