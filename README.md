@@ -1,6 +1,6 @@
 # grunt-styleguide [![build status](https://secure.travis-ci.org/indieisaconcept/grunt-styleguide.png)](http://travis-ci.org/indieisaconcept/grunt-styleguide)
 
-[![NPM info][nodei.co]][https://nodei.co/npm/grunt-styleguide.png?downloads=true]
+[![NPM info][https://nodei.co/npm/grunt-styleguide.png?downloads=true]][https://npmjs.org/package/grunt-styleguide]
 
 > Universal CSS styleguide generator for grunt
 
