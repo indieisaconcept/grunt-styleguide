@@ -244,63 +244,39 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-### 0.2.11
+- 0.2.12
 
-- Updated styledocco dependency (#16)
+    - Cleanup release history
+    - Use inherited version of LESS ( @pokornyr )
+    - Small documentation typo ( @simonwjackson )
 
-### 0.2.10
+- 0.2.11 | Updated styledocco dependency (#16)
+- 0.2.10 | KSS fix (#15)
+- 0.2.9  | Simplify styledocco plugin
 
-- KSS fix (#15)
+- 0.2.8
 
-### 0.2.9
+    - Updated styledocco dependencies
+    - Added Stylus
 
-- Simplify styledocco plugin
+- 0.2.7 | Cumulative fixes (Issues #18, #14, #11) [ sorry for the delay ]
+- 0.2.6 | Minor code tweaks to resolve some user issues
+- 0.2.5 | Node.js ~0.10.0 compatibility
+- 0.2.4 | Pass local less path to styledocco
+- 0.2.3 | Styleguide nolonger uses custom node-kss fork (includes nolonger supported for KSS beware)
+- 0.2.2 | Grunt 0.4.0 support (~0.3.0 no longer supported)
+- 0.2.1 | Minor bug fix
 
-### 0.2.8
+- 0.2.0
 
-- Updated styledocco dependencies
-- Added Stylus
+    - Revised documentation
+    - Revised options structure
+    - Introduced template options
+    - Introduced node-kss
 
-### 0.2.7
+- 0.1.1
 
-- Cumulative fixes (Issues #18, #14, #11) [ sorry for the delay ]
+    - Travis support
+    - Grunt compatibility tweaks
 
-### 0.2.6
-
-- Minor code tweaks to resolve some user issues
-
-### 0.2.5
-
-- Node.js ~0.10.0 compatibility
-
-### 0.2.4
-
-- Pass local less path to styledocco
-
-### 0.2.3
-
-- Styleguide nolonger uses custom node-kss fork (includes nolonger supported for KSS beware)
-
-### 0.2.2
-
-+ Grunt 0.4.0 support (~0.3.0 no longer supported)
-
-### 0.2.1
-
-+ Minor bug fix
-
-### 0.2.0
-
-+ Revised documentation
-+ Revised options structure
-+ Introduced template options
-+ Introduced node-kss
-
-### 0.1.1
-
-+ Travis support
-+ Grunt compatibility tweaks
-
-### 0.1.0
-
-+ Initial Release
+- 0.1.0 | Initial Release
