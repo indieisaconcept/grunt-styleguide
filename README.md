@@ -280,3 +280,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
     - Grunt compatibility tweaks
 
 - 0.1.0 | Initial Release
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/indieisaconcept/grunt-styleguide/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
