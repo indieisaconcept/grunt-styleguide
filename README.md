@@ -20,7 +20,7 @@
 	<th>Templates</th>
   </tr><tr>
     <td><a href="http://jacobrask.github.com/styledocco/">styledocco</a></td>
-    <td>Less, SASS</td>
+    <td>Less, Sass</td>
     <td>Default template provided by styledocco is used</td>
   </tr><tr>
     <td><a href="https://github.com/hughsk/kss-node">kss-node</a></td>
