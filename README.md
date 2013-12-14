@@ -47,7 +47,7 @@ grunt.loadNpmTasks('grunt-styleguide');
 If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[Getting Started]: https://github.com/gruntjs/grunt-docs/blob/master/Getting-started.md
 [package.json]: https://npmjs.org/doc/json.html
 
 ## The "styleguide" task
