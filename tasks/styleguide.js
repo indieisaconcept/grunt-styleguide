@@ -223,10 +223,21 @@ module.exports = function(grunt) {
 
                         file: file,
                         src: files.length > 0 && files || grunt.file.exists(file.orig.src) && file.orig.src,
-                        dest: file.dest,
-                        base: helper.findBasePath(files) || './'
+                        dest: file.dest
 
                     };
+
+                    styleguide.files.base = (function () {
+                      var base;
+                      if (files.length) {
+                        if (grunt.file.isPathAbsolute(files[0])) {
+                          base = path.dirname(files[0]);
+                        } else {
+                          base = helper.findBasePath(files) || './';
+                        }
+                      }
+                      return base || './';
+                    }());
 
                     // make include paths relative
                     template.include = plugin.util.get.paths(template.include, file.dest);
