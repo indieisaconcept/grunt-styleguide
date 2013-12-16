@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/grunt-styleguide.png?downloads=true&stars=true)](https://nodei.co/npm/grunt-styleguide/)
 
-> Universal CSS styleguide generator for grunt
+> Universal CSS styleguide generator for grunt. Easily integrate CSS styleguide generation into your development workflow.
 
 ## Frameworks
 
