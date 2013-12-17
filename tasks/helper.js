@@ -5,6 +5,7 @@ module.exports = {
         var helper = require( 'grunt-lib-contrib' ).init( grunt ),
             path = require( 'path' );
 
+
         // ==========================================================================================
         // findBasePath override (original not working when folders in a tree have the same name)
         // ==========================================================================================
@@ -31,6 +32,6 @@ module.exports = {
         // Return the new helper!
         return helper;
         
-    };
+    }
     
 };
