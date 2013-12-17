@@ -8,7 +8,7 @@ module.exports = {
         // ==========================================================================================
         // findBasePath override (original not working when folders in a tree have the same name)
         // ==========================================================================================
-        helper.findBasePath: function( paths ) {
+        helper.findBasePath = function( paths ) {
 
             if( typeof paths === 'string' && paths.length >= 1 ) {
                 return grunt.util._(path.normalize(paths)).trim(path.sep);
