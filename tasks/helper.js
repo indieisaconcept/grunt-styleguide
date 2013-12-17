@@ -15,7 +15,7 @@ module.exports = {
                 return grunt.util._(path.normalize(paths)).trim(path.sep);
             }
 
-            paths = grunt.util._.map( basePath, function( file ) {
+            paths = grunt.util._.map( paths, function( file ) {
                 var sections = [];
                 while( (file = path.dirname(file)) !== '.' ) {
                     sections.push( file );
