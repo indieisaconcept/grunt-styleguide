@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/grunt-styleguide.png?downloads=true&stars=true)](https://nodei.co/npm/grunt-styleguide/)
 
-> Universal CSS styleguide generator for grunt. Easily integrate CSS styleguide generation into your development workflow.
+> Universal CSS styleguide generator for grunt. Easily integrate Styledocco or KSS styleguide generation into your development workflow.
 
 ## Frameworks
 
@@ -243,6 +243,13 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
 
 ## Release History
+
+- 0.2.13
+
+    - Relativize absolute paths
+    - Rewrite findBasePath function ( @mikedingjan )
+    - Update Grunt getting started docs url ( @iamblue )
+    - It's Sass, not SASS ( @kaelig )
 
 - 0.2.12
 
