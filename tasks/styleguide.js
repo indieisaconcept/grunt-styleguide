@@ -216,13 +216,21 @@ module.exports = function(grunt) {
 
                 async.forEachSeries(files, function(file, next) {
 
-                    var files = file.src;
+                    var files = file.src.length && file.src || file.orig.src;
+
+                    // normalize file paths if located outside
+                    // of pwd
+
+                    files = files.map(function (file) {
+                        return grunt.file.isPathInCwd(file) ? file : path.relative(process.cwd(), file);
+                    });
 
                     // rationalize file object
+
                     styleguide.files = {
 
                         file: file,
-                        src: files.length > 0 && files || grunt.file.exists(file.orig.src) && file.orig.src,
+                        src: files.length > 0 && files,
                         dest: file.dest,
                         base: helper.findBasePath(files) || './'
 
