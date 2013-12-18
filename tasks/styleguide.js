@@ -16,10 +16,10 @@ module.exports = function(grunt) {
 
     var fs = require('fs'),
         path = require('path'),
-        helper = require('grunt-lib-contrib').init(grunt),
+        helper = require('./helper').init(grunt),
         plugin = {},
         _ = grunt.util._;
-
+        
     // ==================================
     // PLUGIN DEFAULTS
     // ==================================
