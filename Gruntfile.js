@@ -13,6 +13,13 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
 
+        task: {
+
+            fixtures: 'test/fixtures',
+            tmp: 'tmp'
+
+        },
+
         jshint: {
 
             options: {
@@ -48,8 +55,8 @@ module.exports = function(grunt) {
                 },
 
                 files: {
-                    'tmp/styledocco/docs/bootstrap/less': 'test/fixtures/styledocco/docs/bootstrap/**/*.less',
-                    'tmp/styledocco/docs/bootstrap/sass': 'test/fixtures/styledocco/docs/bootstrap/**/*.{scss,sass}'
+                    '<%= task.tmp %>/styledocco/docs/bootstrap/less': '<%= task.fixtures %>/styledocco/docs/bootstrap/**/*.less',
+                    '<%= task.tmp %>/styledocco/docs/bootstrap/sass': '<%= task.fixtures %>/styledocco/docs/bootstrap/**/*.{scss,sass}'
                 }
 
             },
@@ -72,7 +79,7 @@ module.exports = function(grunt) {
                 },
 
                 files: {
-                    'tmp/kss/docs/less': 'test/fixtures/generic/docs/styles.less'
+                    '<%= task.tmp %>/kss/docs/less': '<%= task.fixtures %>/generic/docs/styles.less'
                 }
 
             }
