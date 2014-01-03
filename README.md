@@ -244,6 +244,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.14
+
+    - Lock version of styledocco ( @jreading )
+
 - 0.2.13
 
     - Relativize absolute paths
