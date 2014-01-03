@@ -170,10 +170,10 @@ styleguide: {
 				include: ['path/of/resources/to/include']
 			}
 
-			files: {
-				'path/to/dest': 'path/to/source'
-			}
+		},
 
+		files: {
+			'path/to/dest': 'path/to/source'
 		}
 
 	}
@@ -229,7 +229,7 @@ grunt.initConfig({
 
 	    files: {
 	      'docs/core': 'stylesheets/sass/core/*.scss',
-	      'docs/plugins': 'stylesheets/sass/plugins/*.scss',
+	      'docs/plugins': 'stylesheets/sass/plugins/*.scss'
 	    }
 
   	}
