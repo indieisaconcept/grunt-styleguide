@@ -244,6 +244,12 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.15
+
+	- Dependencies updates ( @shinnn )
+	- Move helper out of tasks directory to avoid "No tasks were registered or unregistered." warning ( @princed )
+	- Config example error fixes ( @levito  )
+
 - 0.2.14
 
     - Lock version of styledocco ( @jreading )
