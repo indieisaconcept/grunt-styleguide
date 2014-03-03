@@ -9,7 +9,7 @@
 [styledocco]: http://jacobrask.github.com/styledocco/
 [kss-node]: https://github.com/hughsk/kss-node
 [jss-styles]: https://github.com/jesseditson/jss
-[extending grunt-styleguide]: /grunt-styleguide/blob/jss/docs/extending_grunt-styleguide.md
+[extending grunt-styleguide]: /grunt-styleguide/blob/master/docs/extending_grunt-styleguide.md
 
 ### Supported
 
