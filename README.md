@@ -196,7 +196,7 @@ styleguide: {
     <td>include</td>
     <td>String, Array</td>
     <td>No</td>
-    <td>Title of the styleguide</td>
+    <td>Resources to include</td>
   </tr>
 </table>
 
