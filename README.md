@@ -112,13 +112,13 @@ By default **grunt-styleguide** will attempt to rationalize options for each of 
     <td>Object</td>
 	<td>Template bundled with framework</td>
     <td>No</td>
-    <td>Details of the templetes to use for rendering if supported</td>
+    <td>Details of the templates to use for rendering if supported</td>
   </tr><tr>
     <td>files</td>
     <td>Object, String, Array</td>
     <td>undefined</td>
     <td>Yes</td>
-    <td>Details of the templetes to use for rendering if supported</td>
+    <td>Details of the templates to use for rendering if supported</td>
   </tr>
 </table>
 
