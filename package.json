@@ -1,7 +1,7 @@
 {
   "name": "grunt-styleguide",
   "description": "Universal CSS styleguide generator for grunt. Easily integrate Styledocco or KSS styleguide generation into your development workflow.",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "homepage": "https://github.com/indieisaconcept/grunt-styleguide",
   "author": {
     "name": "Jonathan Barnett",
@@ -29,21 +29,20 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jshint": "~0.8.0",
-    "grunt-contrib-nodeunit": "~0.3.0"
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
   },
   "dependencies": {
-    "grunt-lib-contrib": "~0.6.1",
-    "wrench": "~1.5.6",
+    "wrench": "~1.5.8",
     "styledocco": "~0.6.6",
     "less": "1.x.x",
-    "kss": "~0.3.6",
-    "stylus": "~0.42.1"
+    "kss": "~1.0.1",
+    "stylus": "~0.49.1"
   },
   "keywords": [
     "gruntplugin",

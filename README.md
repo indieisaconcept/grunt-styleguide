@@ -244,6 +244,13 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.16
+
+  - Remove direct dependency upon grunt-lib-contrib
+  - Readme fix ( @firehist )
+  - Readme fix ( @ryanmargheriti )
+  - Readme fix ( @andrew-luhring )
+
 - 0.2.15
 
 	- Dependencies updates ( @shinnn )
