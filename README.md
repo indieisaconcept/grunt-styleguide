@@ -244,6 +244,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 0.2.17
+
+  - Fix KssStateGenerator ( @stickel )
+
 - 0.2.16
 
   - Remove direct dependency upon grunt-lib-contrib
