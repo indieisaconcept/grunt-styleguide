@@ -18,6 +18,7 @@ module.exports = {
 
         var processors = {
                 'sass': 'sass --compass',
+                'scss': 'sass'
                 'less': depBase + '/.bin/lessc',
                 'stylus': depBase + '/.bin/stylus'
             },
