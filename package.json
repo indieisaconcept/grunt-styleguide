@@ -41,7 +41,7 @@
     "wrench": "~1.5.8",
     "styledocco": "~0.6.6",
     "less": "1.x.x",
-    "kss": "~1.0.1",
+    "kss": "~1.2.0",
     "stylus": "~0.49.1"
   },
   "keywords": [
