@@ -190,7 +190,11 @@ module.exports = function(grunt) {
                     if (filePath) {
 
                         filePath = (!_.isArray(filePath) ? [filePath] : filePath).filter(function (/* String */ file) {
-                            return _.isString(file) && grunt.file.exists(file);
+                            var fileExists = grunt.file.exists(file);
+                            if(!fileExists){
+                                grunt.log.error(key + ': ' + filePath + ' does not exist, so falling back to default.');
+                            }
+                            return _.isString(file) && fileExists;
                         });
 
                         styleguide.template[key] = _.isEmpty(filePath) ? [] : grunt.file.expand(filePath);
