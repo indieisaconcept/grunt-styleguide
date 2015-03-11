@@ -1,3 +1,10 @@
+## Please note grunt-styleguide is no longer actively maintained. If you would like to maintain please raise an issue. 
+
+If you are looking for a replacement and are using kss or styledocco see below.
+
+- https://www.npmjs.com/package/grunt-kss
+- https://www.npmjs.com/package/grunt-styledocco
+
 # grunt-styleguide [![build status](https://secure.travis-ci.org/indieisaconcept/grunt-styleguide.png)](http://travis-ci.org/indieisaconcept/grunt-styleguide) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/indieisaconcept/grunt-styleguide/trend.png)](https://bitdeli.com/free "Bitdeli Badge") [![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/indieisaconcept/grunt-styleguide/counters/views-24h.png)](https://sourcegraph.com/github.com/indieisaconcept/grunt-styleguide)
 
 [![NPM](https://nodei.co/npm/grunt-styleguide.png?downloads=true&stars=true)](https://nodei.co/npm/grunt-styleguide/)
