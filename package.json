@@ -35,7 +35,7 @@
     "grunt-contrib-nodeunit": "~0.4.1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": ">=0.4.0"
   },
   "dependencies": {
     "wrench": "~1.5.8",
